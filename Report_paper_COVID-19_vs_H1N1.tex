@@ -1,0 +1,2951 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Pregnancy during respiratory pandemics: a comparison between 2009/10 H1N1 flu and 2020/21 COVID-19 pandemics in Brazil},
+  pdfauthor={Codes and outputs},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+
+\title{Pregnancy during respiratory pandemics: a comparison between 2009/10
+H1N1 flu and 2020/21 COVID-19 pandemics in Brazil}
+\author{Codes and outputs}
+\date{10/01/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{description}{%
+\section{Description}\label{description}}
+
+This file presents the documentation of the analysis for the article
+``Pregnancy during respiratory pandemics: a comparison between 2009/10
+H1N1 flu and 2020/21 COVID-19 pandemics in Brazil''.
+
+\hypertarget{r-packages-used-functions}{%
+\section{R packages used, functions}\label{r-packages-used-functions}}
+
+The data are analyzed using the free-software R
+(\url{https://www.R-project.org}) in version 4.0.3. Next, we present and
+load the libraries used in the data analysis process.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loadlibrary <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{require}\NormalTok{(x, }\DataTypeTok{character.only =} \OtherTok{TRUE}\NormalTok{)) \{}
+    \KeywordTok{install.packages}\NormalTok{(x, }\DataTypeTok{dependencies =}\NormalTok{ T)}
+    \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{require}\NormalTok{(x, }\DataTypeTok{character.only =} \OtherTok{TRUE}\NormalTok{))}
+      \KeywordTok{stop}\NormalTok{(}\StringTok{"Package not found"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\NormalTok{packages <-}
+\StringTok{  }\KeywordTok{c}\NormalTok{(}
+    \StringTok{"dplyr"}\NormalTok{,}
+    \StringTok{"lubridate"}\NormalTok{,}
+    \StringTok{"readr"}\NormalTok{,}
+    \StringTok{"ggplot2"}\NormalTok{,}
+    \StringTok{"kableExtra"}\NormalTok{,}
+    \StringTok{"tables"}\NormalTok{,}
+    \StringTok{"questionr"}\NormalTok{,}
+    \StringTok{"car"}\NormalTok{,}
+    \StringTok{"data.table"}\NormalTok{,}
+    \StringTok{"magrittr"}\NormalTok{,}
+    \StringTok{"tidyverse"}\NormalTok{,}
+    \StringTok{"readxl"}\NormalTok{,}
+    \StringTok{"summarytools"}\NormalTok{,}
+    \StringTok{"zoo"}\NormalTok{,}
+    \StringTok{"grid"}\NormalTok{,}
+    \StringTok{"gridExtra"}\NormalTok{,}
+    \StringTok{"cowplot"}\NormalTok{,}
+    \StringTok{"modelsummary"}\NormalTok{,}
+    \StringTok{"effectsize"}\NormalTok{,}
+    \StringTok{"rcompanion"}\NormalTok{,}
+    \StringTok{"DescTools"}
+\NormalTok{  )}
+\KeywordTok{lapply}\NormalTok{(packages, loadlibrary)}
+\end{Highlighting}
+\end{Shaded}
+
+One can see below the functions that will be used in the data analysis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#functions for summary measures}
+\NormalTok{MEAN <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{mean}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{MEDIAN <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{median}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{SDev <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{sd}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{MIN <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) base}\OperatorTok{::}\KeywordTok{min}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{MAX <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) base}\OperatorTok{::}\KeywordTok{max}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{q25 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) stats}\OperatorTok{::}\KeywordTok{quantile}\NormalTok{(x, }\DataTypeTok{p=}\FloatTok{0.25}\NormalTok{, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{q75 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) stats}\OperatorTok{::}\KeywordTok{quantile}\NormalTok{(x, }\DataTypeTok{p=}\FloatTok{0.75}\NormalTok{, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{IQR <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{round}\NormalTok{(}\KeywordTok{q75}\NormalTok{(x)}\OperatorTok{-}\KeywordTok{q25}\NormalTok{(x), }\DecValTok{2}\NormalTok{)}
+\NormalTok{n <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)  }\KeywordTok{sum}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+Function for Breslow-Day Test:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{teste_breslowday <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(dados_covid, dados_h1n1, var) \{}
+\NormalTok{  tab <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\NormalTok{  tab[,,}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\KeywordTok{table}\NormalTok{(dados_h1n1}\OperatorTok{$}\NormalTok{pregnant_YN, dados_h1n1[[var]])}
+\NormalTok{  tab[,,}\DecValTok{2}\NormalTok{] <-}\StringTok{ }\KeywordTok{table}\NormalTok{(dados_covid}\OperatorTok{$}\NormalTok{pregnant_YN, dados_covid[[var]])}
+\NormalTok{  a <-}\StringTok{ }\KeywordTok{BreslowDayTest}\NormalTok{(tab, }\DataTypeTok{correct =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  out <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{comp =} \KeywordTok{c}\NormalTok{(}\StringTok{"h1n1-covid"}\NormalTok{),}
+    \DataTypeTok{stat =} \KeywordTok{c}\NormalTok{(a}\OperatorTok{$}\NormalTok{statistic),}
+    \DataTypeTok{p_valor =} \KeywordTok{c}\NormalTok{(a}\OperatorTok{$}\NormalTok{p.value)}
+\NormalTok{    )}
+  \KeywordTok{return}\NormalTok{(out)}
+\NormalTok{ \}}
+\end{Highlighting}
+\end{Shaded}
+
+This research studies some demographic, clinical and mortality variables
+of H1N1 and COVID-19 pandemics aiming to compare pregnant and
+non-pregnant childbearing age women.
+
+The Influenza Epidemiological Surveillance Information System,
+SIVEP-Gripe (Sistema de Informação de Vigilância Epidemiológica da
+Gripe), is a nationwide surveillance database used to monitor severe
+acute respiratory infections in Brazil.
+
+The analyzed data set includes all female patients from SIVEP-Gripe at
+childbearing age (10 to 49 years) with H1N1 and COVID-19 disease
+diagnosis, confirmed, respectively, by positive RT-PCR H1N1 and positive
+RT-PCR SARS-CoV-2 from the first 13 months of each pandemic, this is,
+from May 2009 to April 2010 for H1N1 and from March 2020 to February
+2021 for COVID-19. The data sets can be obtained at
+\url{https://drive.google.com/drive/folders/1qzXgHNjqNUdZ3SnnKRxpv6tQkZeRcpDv?usp=sharing}.
+The data are loaded next.
+
+\hypertarget{selection-of-covid-19-cases}{%
+\section{Selection of COVID-19
+cases}\label{selection-of-covid-19-cases}}
+
+The datasets from 2020 and 2021 are loaded and combined below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{######### loading the databases ###########}
+\CommentTok{#2021}
+\NormalTok{dados_}\DecValTok{2021}\NormalTok{ <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}
+  \StringTok{"INFLUD21-17-05-2021.csv"}\NormalTok{,}
+  \StringTok{";"}\NormalTok{,}
+  \DataTypeTok{escape_double =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{locale =} \KeywordTok{locale}\NormalTok{(}\DataTypeTok{encoding =} \StringTok{"ISO-8859-2"}\NormalTok{),}
+  \DataTypeTok{trim_ws =} \OtherTok{TRUE}
+\NormalTok{)}
+
+\CommentTok{#2020}
+\NormalTok{dados_}\DecValTok{2020}\NormalTok{ <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}
+  \StringTok{"INFLUD-17-05-2021.csv"}\NormalTok{,}
+  \StringTok{";"}\NormalTok{,}
+  \DataTypeTok{escape_double =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{locale =} \KeywordTok{locale}\NormalTok{(}\DataTypeTok{encoding =} \StringTok{"ISO-8859-2"}\NormalTok{),}
+  \DataTypeTok{trim_ws =} \OtherTok{TRUE}
+\NormalTok{)}
+
+\NormalTok{sem <-}\StringTok{ }\DecValTok{19} \CommentTok{#last epidemiological week considered of 2021}
+
+
+\CommentTok{#### Concatenate 2020 and 2021 data ##############}
+\NormalTok{dados1 <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(dados_}\DecValTok{2020}\NormalTok{, dados_}\DecValTok{2021}\NormalTok{)}
+
+\CommentTok{# Year and month of the case}
+\NormalTok{dados1 <-}\StringTok{  }\NormalTok{dados1 }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{dt_sint =} \KeywordTok{as.Date}\NormalTok{(DT_SIN_PRI, }\DataTypeTok{format =} \StringTok{"%d/%m/%Y"}\NormalTok{), }\CommentTok{#date of first symptoms}
+    \DataTypeTok{ano =}\NormalTok{ lubridate}\OperatorTok{::}\KeywordTok{year}\NormalTok{(dt_sint), }\CommentTok{#year of the case}
+    \DataTypeTok{mes =}\NormalTok{ lubridate}\OperatorTok{::}\KeywordTok{month}\NormalTok{(dt_sint) }\CommentTok{#month of the case}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+There are currently 2007693 observations in the database.
+
+\hypertarget{filtering-and-data-treatment}{%
+\subsection{Filtering and data
+treatment}\label{filtering-and-data-treatment}}
+
+The first filtering consists of selecting the symptom epidemiological
+weeks of the analysis in 2020 and 2021.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#selection of the 2020 and 2021 epidemiological weeks - from March 2020 to February 2021. }
+\NormalTok{dados2 <-}\StringTok{ }\NormalTok{dados1 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{((ano}\OperatorTok{==}\DecValTok{2020} \OperatorTok{&}\StringTok{ }\NormalTok{SEM_PRI }\OperatorTok{>=}\DecValTok{8}\NormalTok{) }\OperatorTok{|}\StringTok{ }\NormalTok{ano }\OperatorTok{==}\DecValTok{2021}\NormalTok{)}
+
+\NormalTok{dados2 <-}\StringTok{ }\NormalTok{dados2 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ano =} \KeywordTok{ifelse}\NormalTok{(ano }\OperatorTok{==}\DecValTok{2021} \OperatorTok{&}\StringTok{ }\NormalTok{SEM_PRI }\OperatorTok{==}\DecValTok{53}\NormalTok{, }\DecValTok{2020}\NormalTok{, ano)) }\OperatorTok{%>%}\StringTok{   }\KeywordTok{filter}\NormalTok{(ano}\OperatorTok{==}\DecValTok{2020} \OperatorTok{|}\StringTok{ }\NormalTok{(ano }\OperatorTok{==}\DecValTok{2021} \OperatorTok{&}\StringTok{ }\NormalTok{SEM_PRI }\OperatorTok{<=}\StringTok{ }\NormalTok{sem))}
+
+\NormalTok{dados3 <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(dados2, }
+\NormalTok{                 (mes }\OperatorTok{>=}\DecValTok{3} \OperatorTok{&}\StringTok{ }\NormalTok{ano }\OperatorTok{==}\StringTok{ }\DecValTok{2020}\NormalTok{) }\OperatorTok{|}\StringTok{ }\NormalTok{(mes }\OperatorTok{<=}\DecValTok{3} \OperatorTok{&}\StringTok{ }\NormalTok{ano }\OperatorTok{==}\StringTok{ }\DecValTok{2021}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados3, }\KeywordTok{ctable}\NormalTok{(SEM_PRI, ano))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## SEM_PRI * ano  
+## Data Frame: dados3  
+## 
+## --------- ----- ------------------ ----------------- ------------------
+##             ano               2020              2021              Total
+##   SEM_PRI                                                              
+##         1               0 (  0.0%)    35407 (100.0%)     35407 (100.0%)
+##         2               0 (  0.0%)    34176 (100.0%)     34176 (100.0%)
+##         3               0 (  0.0%)    31415 (100.0%)     31415 (100.0%)
+##         4               0 (  0.0%)    29396 (100.0%)     29396 (100.0%)
+##         5               0 (  0.0%)    35312 (100.0%)     35312 (100.0%)
+##         6               0 (  0.0%)    38422 (100.0%)     38422 (100.0%)
+##         7               0 (  0.0%)    48352 (100.0%)     48352 (100.0%)
+##         8               0 (  0.0%)    51278 (100.0%)     51278 (100.0%)
+##         9               0 (  0.0%)    71029 (100.0%)     71029 (100.0%)
+##        10            1984 (  2.7%)    71533 ( 97.3%)     73517 (100.0%)
+##        11            5139 (  6.8%)    70292 ( 93.2%)     75431 (100.0%)
+##        12           12825 ( 18.7%)    55824 ( 81.3%)     68649 (100.0%)
+##        13           14978 ( 35.2%)    27559 ( 64.8%)     42537 (100.0%)
+##        14           16298 (100.0%)        0 (  0.0%)     16298 (100.0%)
+##        15           19581 (100.0%)        0 (  0.0%)     19581 (100.0%)
+##        16           24877 (100.0%)        0 (  0.0%)     24877 (100.0%)
+##        17           30814 (100.0%)        0 (  0.0%)     30814 (100.0%)
+##        18           34864 (100.0%)        0 (  0.0%)     34864 (100.0%)
+##        19           34576 (100.0%)        0 (  0.0%)     34576 (100.0%)
+##        20           37150 (100.0%)        0 (  0.0%)     37150 (100.0%)
+##        21           33800 (100.0%)        0 (  0.0%)     33800 (100.0%)
+##        22           31235 (100.0%)        0 (  0.0%)     31235 (100.0%)
+##        23           35607 (100.0%)        0 (  0.0%)     35607 (100.0%)
+##        24           34139 (100.0%)        0 (  0.0%)     34139 (100.0%)
+##        25           36700 (100.0%)        0 (  0.0%)     36700 (100.0%)
+##        26           32968 (100.0%)        0 (  0.0%)     32968 (100.0%)
+##        27           37431 (100.0%)        0 (  0.0%)     37431 (100.0%)
+##        28           37026 (100.0%)        0 (  0.0%)     37026 (100.0%)
+##        29           34453 (100.0%)        0 (  0.0%)     34453 (100.0%)
+##        30           33718 (100.0%)        0 (  0.0%)     33718 (100.0%)
+##        31           32203 (100.0%)        0 (  0.0%)     32203 (100.0%)
+##        32           30043 (100.0%)        0 (  0.0%)     30043 (100.0%)
+##        33           31091 (100.0%)        0 (  0.0%)     31091 (100.0%)
+##        34           28286 (100.0%)        0 (  0.0%)     28286 (100.0%)
+##        35           26357 (100.0%)        0 (  0.0%)     26357 (100.0%)
+##        36           26499 (100.0%)        0 (  0.0%)     26499 (100.0%)
+##        37           24059 (100.0%)        0 (  0.0%)     24059 (100.0%)
+##        38           22244 (100.0%)        0 (  0.0%)     22244 (100.0%)
+##        39           21578 (100.0%)        0 (  0.0%)     21578 (100.0%)
+##        40           22454 (100.0%)        0 (  0.0%)     22454 (100.0%)
+##        41           21032 (100.0%)        0 (  0.0%)     21032 (100.0%)
+##        42           19028 (100.0%)        0 (  0.0%)     19028 (100.0%)
+##        43           19470 (100.0%)        0 (  0.0%)     19470 (100.0%)
+##        44           18727 (100.0%)        0 (  0.0%)     18727 (100.0%)
+##        45           23281 (100.0%)        0 (  0.0%)     23281 (100.0%)
+##        46           25803 (100.0%)        0 (  0.0%)     25803 (100.0%)
+##        47           29261 (100.0%)        0 (  0.0%)     29261 (100.0%)
+##        48           29161 (100.0%)        0 (  0.0%)     29161 (100.0%)
+##        49           33057 (100.0%)        0 (  0.0%)     33057 (100.0%)
+##        50           30608 (100.0%)        0 (  0.0%)     30608 (100.0%)
+##        51           28490 (100.0%)        0 (  0.0%)     28490 (100.0%)
+##        52           30470 (100.0%)        0 (  0.0%)     30470 (100.0%)
+##        53           21659 (100.0%)        0 (  0.0%)     21659 (100.0%)
+##     Total         1175024 ( 66.2%)   599995 ( 33.8%)   1775019 (100.0%)
+## --------- ----- ------------------ ----------------- ------------------
+\end{verbatim}
+
+There are 1775019 observations in the database.
+
+The next selection of females cases:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#filtering F}
+\NormalTok{dados4 <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(dados3, CS_SEXO }\OperatorTok{==}\StringTok{ "F"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 813023 observations in the database.
+
+The next step is to filter only women between 10 and 49 years old:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#filtering age}
+\NormalTok{dados5 <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(dados4, NU_IDADE_N }\OperatorTok{>}\StringTok{ }\DecValTok{9} \OperatorTok{&}\StringTok{ }\NormalTok{NU_IDADE_N }\OperatorTok{<}\StringTok{ }\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 216608 observations in the database.
+
+The next selection is the COVID-19 cases indicated by the
+\texttt{CLASSI\_FIN} variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados5, }\KeywordTok{freq}\NormalTok{(CLASSI_FIN))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Frequencies  
+## dados5$CLASSI_FIN  
+## Type: Numeric  
+## 
+##                 Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ----------- -------- --------- -------------- --------- --------------
+##           1      372      0.19           0.19      0.17           0.17
+##           2      714      0.36           0.55      0.33           0.50
+##           3      507      0.26           0.81      0.23           0.74
+##           4    65416     33.15          33.95     30.20          30.94
+##           5   130340     66.05         100.00     60.17          91.11
+##        <NA>    19259                               8.89         100.00
+##       Total   216608    100.00         100.00    100.00         100.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados6 <-}\StringTok{ }\NormalTok{dados5 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(CLASSI_FIN }\OperatorTok{==}\StringTok{ }\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 130340 observations in the database.
+
+Now let's create the variable if \texttt{CLASSI\_FIN==5} by PCR or
+another type of diagnosis.
+
+This variable is \texttt{pcr\_test}, with the categories:
+\texttt{pcr\_sars2} if PCR\_SARS2 == 1.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#create pcr_test variable by pcr variables}
+\NormalTok{dados6 <-}\StringTok{ }\NormalTok{dados6 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pcr_test =} \KeywordTok{case_when}\NormalTok{(PCR_SARS2 }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "pcr_sars2"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ "não"}
+\NormalTok{                              )}
+\NormalTok{         )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados6, }\KeywordTok{freq}\NormalTok{(pcr_test))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Frequencies  
+## dados6$pcr_test  
+## Type: Character  
+## 
+##                     Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## --------------- -------- --------- -------------- --------- --------------
+##             não    44348     34.02          34.02     34.02          34.02
+##       pcr_sars2    85992     65.98         100.00     65.98         100.00
+##            <NA>        0                               0.00         100.00
+##           Total   130340    100.00         100.00    100.00         100.00
+\end{verbatim}
+
+Now we will filter the cases with `pcr\_test== pcr\_sars2' which are the
+cases where they can be COVID-19 only by PCR:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados7 <-}\StringTok{ }\NormalTok{dados6 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(pcr_test }\OperatorTok{==}\StringTok{ "pcr_sars2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 85992 observations in the database.
+
+Now let's select only pregnant or non-pregnant people:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados7, }\KeywordTok{freq}\NormalTok{(CS_GESTANT))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Frequencies  
+## dados7$CS_GESTANT  
+## Type: Numeric  
+## 
+##                Freq    % Valid   % Valid Cum.    % Total   % Total Cum.
+## ----------- ------- ---------- -------------- ---------- --------------
+##           0       1     0.0012         0.0012     0.0012         0.0012
+##           1     484     0.5628         0.5640     0.5628         0.5640
+##           2    1376     1.6001         2.1642     1.6001         2.1642
+##           3    3271     3.8038         5.9680     3.8038         5.9680
+##           4     252     0.2931         6.2610     0.2931         6.2610
+##           5   64224    74.6860        80.9471    74.6860        80.9471
+##           6    3430     3.9887        84.9358     3.9887        84.9358
+##           9   12954    15.0642       100.0000    15.0642       100.0000
+##        <NA>       0                               0.0000       100.0000
+##       Total   85992   100.0000       100.0000   100.0000       100.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados7 <-}\StringTok{ }\NormalTok{dados7 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{classi_gesta =} \KeywordTok{case_when}\NormalTok{(}
+\NormalTok{      CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{1}  \OperatorTok{~}\StringTok{ "1tri"}\NormalTok{, }\CommentTok{#first trimester of pregnancy}
+\NormalTok{      CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{2}  \OperatorTok{~}\StringTok{ "2tri"}\NormalTok{, }\CommentTok{#second trimester of pregnancy}
+\NormalTok{      CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{3}  \OperatorTok{~}\StringTok{ "3tri"}\NormalTok{, }\CommentTok{#third trimester of pregnancy}
+\NormalTok{      CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{4}  \OperatorTok{~}\StringTok{ "IG_ig"}\NormalTok{, }\CommentTok{#ignored gestational age of pregnancy}
+\NormalTok{      CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{5}  \OperatorTok{~}\StringTok{ "não"}\NormalTok{, }\CommentTok{#not pregnancy}
+      \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}
+\NormalTok{    )}
+\NormalTok{  )}
+
+\CommentTok{#filtering only pregnant or non-pregnant}
+\NormalTok{dados8 <-}\StringTok{ }\NormalTok{dados7 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(classi_gesta))}
+
+
+\CommentTok{#creating the variable pregnant yes or  no (gestante_SN)}
+\NormalTok{dados8 <-}\StringTok{ }\NormalTok{dados8 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{gestante_SN =} \KeywordTok{ifelse}\NormalTok{(CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{5}\NormalTok{, }\StringTok{"não"}\NormalTok{, }\StringTok{"sim"}\NormalTok{)) }\CommentTok{#não for no and sim for yes}
+
+\KeywordTok{freq}\NormalTok{(dados8}\OperatorTok{$}\NormalTok{gestante_SN)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Frequencies  
+## dados8$gestante_SN  
+## Type: Character  
+## 
+##                Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ----------- ------- --------- -------------- --------- --------------
+##         não   64224     92.27          92.27     92.27          92.27
+##         sim    5383      7.73         100.00      7.73         100.00
+##        <NA>       0                               0.00         100.00
+##       Total   69607    100.00         100.00    100.00         100.00
+\end{verbatim}
+
+There is 69607 observations in the database.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_covid <-}\StringTok{  }\NormalTok{dados8}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{selection-of-h1n1-cases}{%
+\section{Selection of H1N1 cases}\label{selection-of-h1n1-cases}}
+
+The datasets from 2009 and 2010 are loaded and combined below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{######### loading the databases ###########}
+\CommentTok{#2009 e 2010}
+\NormalTok{dados2009 <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}
+  \StringTok{"influd09_limpo-final.csv"}\NormalTok{,}
+  \StringTok{";"}\NormalTok{,}
+  \DataTypeTok{escape_double =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{locale =} \KeywordTok{locale}\NormalTok{(}\DataTypeTok{encoding =} \StringTok{"ISO-8859-2"}\NormalTok{),}
+  \DataTypeTok{trim_ws =} \OtherTok{TRUE}
+\NormalTok{)}
+
+\NormalTok{dados2010 <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}
+  \StringTok{"influd10_limpo-final.csv"}\NormalTok{,}
+  \StringTok{";"}\NormalTok{,}
+  \DataTypeTok{escape_double =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{locale =} \KeywordTok{locale}\NormalTok{(}\DataTypeTok{encoding =} \StringTok{"ISO-8859-2"}\NormalTok{),}
+  \DataTypeTok{trim_ws =} \OtherTok{TRUE}
+\NormalTok{)}
+
+\NormalTok{dados_}\DecValTok{2009}\NormalTok{ <-}\StringTok{ }\NormalTok{dados2009 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{SRAGFINAL =}\NormalTok{ SRAG2009FINAL)}
+
+\NormalTok{dados_}\DecValTok{2010}\NormalTok{ <-}\StringTok{ }\NormalTok{dados2010 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{SRAGFINAL =}\NormalTok{ SRAG2010FINAL)}
+
+\NormalTok{dados <-}\StringTok{ }\KeywordTok{full_join}\NormalTok{(dados_}\DecValTok{2009}\NormalTok{, dados_}\DecValTok{2010}\NormalTok{)}
+
+\CommentTok{#Create case year variable}
+\NormalTok{dados <-}\StringTok{  }\NormalTok{dados }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{dt_sint =} \KeywordTok{as.Date}\NormalTok{(DT_SIN_PRI, }\DataTypeTok{format =} \StringTok{"%d/%m/%Y"}\NormalTok{), }\CommentTok{#date of first symptoms}
+    \DataTypeTok{ano =}\NormalTok{ lubridate}\OperatorTok{::}\KeywordTok{year}\NormalTok{(dt_sint), }\CommentTok{#year of the case}
+    \DataTypeTok{mes =}\NormalTok{ lubridate}\OperatorTok{::}\KeywordTok{month}\NormalTok{(dt_sint) }\CommentTok{#month of the case}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+There are currently 217167 observations in the database.
+
+\hypertarget{filtering-and-data-treatment-1}{%
+\subsection{Filtering and data
+treatment}\label{filtering-and-data-treatment-1}}
+
+The first filtering consists of selecting cases from May 2009 to April
+2010.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados1 <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(dados, }
+\NormalTok{                 (mes }\OperatorTok{>=}\DecValTok{5} \OperatorTok{&}\StringTok{ }\NormalTok{ano }\OperatorTok{==}\StringTok{ }\DecValTok{2009}\NormalTok{) }\OperatorTok{|}\StringTok{ }\NormalTok{(mes }\OperatorTok{<=}\DecValTok{5} \OperatorTok{&}\StringTok{ }\NormalTok{ano }\OperatorTok{==}\StringTok{ }\DecValTok{2010}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+There are 212584 observations in the database.
+
+The next selection of females:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#filtering F}
+\NormalTok{dados2 <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(dados1, CS_SEXO }\OperatorTok{==}\StringTok{ "F"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 115357 observations in the database.
+
+The next step is to filter only women between 10 and 49 years old.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Filtering by age range of interest}
+\NormalTok{dados3 <-}\StringTok{ }\NormalTok{dados2 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(NU_IDADE_N }\OperatorTok{>}\StringTok{ }\DecValTok{4009} \OperatorTok{&}\StringTok{ }\NormalTok{NU_IDADE_N }\OperatorTok{<}\StringTok{ }\DecValTok{4050}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 75717 observations in the database.
+
+Now let's select only pregnant or non-pregnant people.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados3, }\KeywordTok{freq}\NormalTok{(CS_GESTANT))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Frequencies  
+## dados3$CS_GESTANT  
+## Type: Numeric  
+## 
+##                Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ----------- ------- --------- -------------- --------- --------------
+##           1    2576      3.40           3.40      3.40           3.40
+##           2    4782      6.32           9.72      6.32           9.72
+##           3    4284      5.66          15.38      5.66          15.38
+##           4     434      0.57          15.95      0.57          15.95
+##           5   49663     65.59          81.54     65.59          81.54
+##           6    5348      7.06          88.60      7.06          88.60
+##           9    8630     11.40         100.00     11.40         100.00
+##        <NA>       0                               0.00         100.00
+##       Total   75717    100.00         100.00    100.00         100.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados3 <-}\StringTok{ }\NormalTok{dados3 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{classi_gesta =} \KeywordTok{case_when}\NormalTok{(}
+\NormalTok{      CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{1}  \OperatorTok{~}\StringTok{ "1tri"}\NormalTok{, }\CommentTok{#first trimester of pregnancy}
+\NormalTok{      CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{2}  \OperatorTok{~}\StringTok{ "2tri"}\NormalTok{, }\CommentTok{#second trimester of pregnancy}
+\NormalTok{      CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{3}  \OperatorTok{~}\StringTok{ "3tri"}\NormalTok{, }\CommentTok{#third trimester of pregnancy}
+\NormalTok{      CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{4}  \OperatorTok{~}\StringTok{ "IG_ig"}\NormalTok{, }\CommentTok{#ignored gestational age of pregnancy}
+\NormalTok{      CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{5}  \OperatorTok{~}\StringTok{ "não"}\NormalTok{, }\CommentTok{#not pregnancy}
+      \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}
+\NormalTok{    )}
+\NormalTok{  )}
+
+\CommentTok{#filtering only pregnant or non-pregnant}
+\NormalTok{dados4 <-}\StringTok{ }\NormalTok{dados3 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(classi_gesta))}
+
+
+\CommentTok{#creating the variable pregnant yes or  no (gestante_SN)}
+\NormalTok{dados4 <-}\StringTok{ }\NormalTok{dados4 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{gestante_SN =} \KeywordTok{ifelse}\NormalTok{(CS_GESTANT }\OperatorTok{==}\StringTok{ }\DecValTok{5}\NormalTok{, }\StringTok{"não"}\NormalTok{, }\StringTok{"sim"}\NormalTok{)) }\CommentTok{#"não" means 'no' and "sim" means 'yes'}
+\end{Highlighting}
+\end{Shaded}
+
+There are 61739 observations in the database.
+
+The next selection is the covid cases indicated by the
+\texttt{CLASSI\_FIN} variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados4, }\KeywordTok{freq}\NormalTok{(CLASSI_FIN))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Frequencies  
+## dados4$CLASSI_FIN  
+## Type: Numeric  
+## 
+##                Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ----------- ------- --------- -------------- --------- --------------
+##           1   35214    59.842         59.842    57.037         57.037
+##           2    1230     2.090         61.932     1.992         59.029
+##           3   22351    37.983         99.915    36.202         95.232
+##           4      24     0.041         99.956     0.039         95.270
+##           9      26     0.044        100.000     0.042         95.313
+##        <NA>    2894                              4.687        100.000
+##       Total   61739   100.000        100.000   100.000        100.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados5 <-}\StringTok{ }\NormalTok{dados4 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(CLASSI_FIN }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 35214 observations in the database.
+
+Now let's create the variable if \texttt{CLASSI\_FIN==1} by PCR or
+another type of diagnosis.
+
+This variable is \texttt{pcr\_test}, with the categories:
+\texttt{pcr\_pos} if PCR positive.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#create pcr_test variable by pcr variables}
+\NormalTok{dados5 <-}\StringTok{ }\NormalTok{dados5 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pcr_test =}  \KeywordTok{case_when}\NormalTok{(PCR_RES }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{&}\StringTok{ }\CommentTok{#pcr positive}
+\NormalTok{PCR_ETIOL}\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "pcr_pos"}\NormalTok{,}
+\OtherTok{TRUE} \OperatorTok{~}\StringTok{ "não"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Now we will filter the cases with pcr\_test == ``pcr\_pos'' that they
+are the cases where COVID-19 only by PCR:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados6 <-}\StringTok{ }\NormalTok{dados5 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(pcr_test }\OperatorTok{==}\StringTok{ "pcr_pos"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 8854 observations in the database.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_h1n1 <-}\StringTok{  }\NormalTok{dados6}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{analysis}{%
+\section{Analysis}\label{analysis}}
+
+Creating a variable to identify pregnant and non-pregnant women:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_h1n1 <-}\StringTok{  }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pregnant_YN =} \KeywordTok{ifelse}\NormalTok{(gestante_SN }\OperatorTok{==}\StringTok{ "não"}\NormalTok{, }\StringTok{"no"}\NormalTok{, }\StringTok{"yes"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_covid <-}\StringTok{  }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pregnant_YN =} \KeywordTok{ifelse}\NormalTok{(gestante_SN }\OperatorTok{==}\StringTok{ "não"}\NormalTok{, }\StringTok{"no"}\NormalTok{, }\StringTok{"yes"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{epidemiologic-characteristics}{%
+\subsection{Epidemiologic
+characteristics}\label{epidemiologic-characteristics}}
+
+\hypertarget{age}{%
+\subsection{Age}\label{age}}
+
+\hypertarget{h1n1}{%
+\subsubsection{H1N1}\label{h1n1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{age =}\NormalTok{ NU_IDADE_N }\OperatorTok{-}\StringTok{ }\KeywordTok{round}\NormalTok{(NU_IDADE_N, }\DecValTok{-2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Descritiva :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{datasummary}\NormalTok{((pregnant_YN) }\OperatorTok{~}\StringTok{ }\NormalTok{age}\OperatorTok{*}\NormalTok{(n}\OperatorTok{+}\NormalTok{MEAN}\OperatorTok{+}\NormalTok{SD}\OperatorTok{+}\NormalTok{MEDIAN}\OperatorTok{+}\NormalTok{MIN}\OperatorTok{+}\NormalTok{MAX}\OperatorTok{+}\NormalTok{q25}\OperatorTok{+}\NormalTok{q75}\OperatorTok{+}\NormalTok{IQR),}
+            \DataTypeTok{data =}\NormalTok{ dados_h1n1, }\DataTypeTok{output =} \StringTok{'markdown'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrrrr@{}}
+\toprule
+& n & MEAN & SD & MEDIAN & MIN & MAX & q25 & q75 & IQR\tabularnewline
+\midrule
+\endhead
+no & 6070.00 & 26.87 & 10.67 & 26.00 & 10.00 & 49.00 & 18.00 & 35.00 &
+17.00\tabularnewline
+yes & 2784.00 & 25.15 & 6.12 & 25.00 & 10.00 & 49.00 & 21.00 & 29.00 &
+8.00\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#t test to compare ages of pregnant and non-pregnant women}
+\KeywordTok{t.test}\NormalTok{(age }\OperatorTok{~}\StringTok{ }\NormalTok{pregnant_YN, }\DataTypeTok{data =}\NormalTok{ dados_h1n1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  age by pregnant_YN
+## t = 9.5691, df = 8435.1, p-value < 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.364875 2.068135
+## sample estimates:
+##  mean in group no mean in group yes 
+##          26.86952          25.15302
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Cohen's effect size}
+\NormalTok{c_h1n1 <-}\StringTok{ }\KeywordTok{cohens_d}\NormalTok{(age }\OperatorTok{~}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(pregnant_YN), }\DataTypeTok{data=}\NormalTok{dados_h1n1)}
+\NormalTok{c_h1n1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cohen's d |       95% CI
+## ------------------------
+## 0.18      | [0.14, 0.23]
+## 
+## - Estimated using pooled SD.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{interpret_d}\NormalTok{(c_h1n1}\OperatorTok{$}\NormalTok{Cohens_d,}\DataTypeTok{rules=}\StringTok{"cohen1988"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "very small"
+## (Rules: cohen1988)
+\end{verbatim}
+
+\hypertarget{covid-19}{%
+\subsubsection{COVID-19}\label{covid-19}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_covid}\OperatorTok{$}\NormalTok{age <-}\StringTok{ }\NormalTok{dados_covid}\OperatorTok{$}\NormalTok{NU_IDADE_N}
+\KeywordTok{datasummary}\NormalTok{((pregnant_YN) }\OperatorTok{~}\StringTok{ }\NormalTok{age}\OperatorTok{*}\NormalTok{(n}\OperatorTok{+}\NormalTok{MEAN}\OperatorTok{+}\NormalTok{SD}\OperatorTok{+}\NormalTok{MEDIAN}\OperatorTok{+}\NormalTok{MIN}\OperatorTok{+}\NormalTok{MAX}\OperatorTok{+}\NormalTok{q25}\OperatorTok{+}\NormalTok{q75}\OperatorTok{+}\NormalTok{IQR),}
+            \DataTypeTok{data =}\NormalTok{ dados_covid, }\DataTypeTok{output =} \StringTok{'markdown'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrrrr@{}}
+\toprule
+& n & MEAN & SD & MEDIAN & MIN & MAX & q25 & q75 & IQR\tabularnewline
+\midrule
+\endhead
+no & 64224.00 & 38.17 & 8.27 & 40.00 & 10.00 & 49.00 & 33.00 & 45.00 &
+12.00\tabularnewline
+yes & 5383.00 & 30.03 & 6.86 & 30.00 & 10.00 & 49.00 & 25.00 & 35.00 &
+10.00\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#t test to compare ages of pregnant and non-pregnant women}
+\KeywordTok{t.test}\NormalTok{(age }\OperatorTok{~}\StringTok{ }\NormalTok{pregnant_YN, }\DataTypeTok{data =}\NormalTok{ dados_covid)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  age by pregnant_YN
+## t = 82.22, df = 6767.5, p-value < 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  7.945794 8.333941
+## sample estimates:
+##  mean in group no mean in group yes 
+##          38.17442          30.03455
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Cohen's effect size}
+\NormalTok{c_covid <-}\StringTok{ }\KeywordTok{cohens_d}\NormalTok{(age }\OperatorTok{~}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(pregnant_YN), }\DataTypeTok{data=}\NormalTok{dados_covid)}
+\NormalTok{c_covid}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cohen's d |       95% CI
+## ------------------------
+## 1.00      | [1.10, 1.10]
+## 
+## - Estimated using pooled SD.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{interpret_d}\NormalTok{(c_covid}\OperatorTok{$}\NormalTok{Cohens_d,}\DataTypeTok{rules=}\StringTok{"cohen1988"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "large"
+## (Rules: cohen1988)
+\end{verbatim}
+
+\hypertarget{age-group}{%
+\subsection{Age Group}\label{age-group}}
+
+\hypertarget{h1n1-1}{%
+\subsubsection{H1N1}\label{h1n1-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Creating a variable to classify the age groups}
+\NormalTok{dados_h1n1 <-}\StringTok{  }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{age_group =} \KeywordTok{case_when}\NormalTok{(}
+\NormalTok{      NU_IDADE_N }\OperatorTok{<=}\StringTok{ }\DecValTok{4019} \OperatorTok{~}\StringTok{ "<20"}\NormalTok{,}
+\NormalTok{      NU_IDADE_N }\OperatorTok{>=}\StringTok{ }\DecValTok{4020}
+      \OperatorTok{&}\StringTok{ }\NormalTok{NU_IDADE_N }\OperatorTok{<=}\StringTok{ }\DecValTok{4034} \OperatorTok{~}\StringTok{ "20-34"}\NormalTok{,}
+\NormalTok{      NU_IDADE_N }\OperatorTok{>}\StringTok{ }\DecValTok{4034} \OperatorTok{~}\StringTok{ ">=35"}\NormalTok{,}
+      \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{dados_h1n1}\OperatorTok{$}\NormalTok{age_group <-}
+\StringTok{  }\KeywordTok{factor}\NormalTok{(dados_h1n1}\OperatorTok{$}\NormalTok{age_group, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"<20"}\NormalTok{, }\StringTok{"20-34"}\NormalTok{, }\StringTok{">=35"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(age_group, pregnant_YN, }\DataTypeTok{prop =} \StringTok{"c"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Column Proportions  
+## age_group * pregnant_YN  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ----------- ------------- --------------- --------------- ---------------
+##               pregnant_YN              no             yes           Total
+##   age_group                                                              
+##         <20                 1722 ( 28.4%)    499 ( 17.9%)   2221 ( 25.1%)
+##       20-34                 2783 ( 45.8%)   2052 ( 73.7%)   4835 ( 54.6%)
+##        >=35                 1565 ( 25.8%)    233 (  8.4%)   1798 ( 20.3%)
+##       Total                 6070 (100.0%)   2784 (100.0%)   8854 (100.0%)
+## ----------- ------------- --------------- --------------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##   639.2557     2       0    
+## ----------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-1}{%
+\subsubsection{COVID-19}\label{covid-19-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Creating a variable to classify the age groups}
+\NormalTok{dados_covid <-}\StringTok{  }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{age_group =} \KeywordTok{case_when}\NormalTok{(}
+\NormalTok{      NU_IDADE_N }\OperatorTok{<=}\StringTok{ }\DecValTok{19} \OperatorTok{~}\StringTok{ "<20"}\NormalTok{,}
+\NormalTok{      NU_IDADE_N }\OperatorTok{>=}\StringTok{ }\DecValTok{20}
+      \OperatorTok{&}\StringTok{ }\NormalTok{NU_IDADE_N }\OperatorTok{<=}\StringTok{ }\DecValTok{34} \OperatorTok{~}\StringTok{ "20-34"}\NormalTok{,}
+\NormalTok{      NU_IDADE_N }\OperatorTok{>}\StringTok{ }\DecValTok{34} \OperatorTok{~}\StringTok{ ">=35"}\NormalTok{,}
+      \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{dados_covid}\OperatorTok{$}\NormalTok{age_group <-}
+\StringTok{  }\KeywordTok{factor}\NormalTok{(dados_covid}\OperatorTok{$}\NormalTok{age_group, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"<20"}\NormalTok{, }\StringTok{"20-34"}\NormalTok{, }\StringTok{">=35"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(age_group, pregnant_YN, }\DataTypeTok{prop =} \StringTok{"c"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Column Proportions  
+## age_group * pregnant_YN  
+## Data Frame: dados_covid  
+## 
+## 
+## ----------- ------------- ---------------- --------------- ----------------
+##               pregnant_YN               no             yes            Total
+##   age_group                                                                
+##         <20                  1731 (  2.7%)    339 (  6.3%)    2070 (  3.0%)
+##       20-34                 17279 ( 26.9%)   3559 ( 66.1%)   20838 ( 29.9%)
+##        >=35                 45214 ( 70.4%)   1485 ( 27.6%)   46699 ( 67.1%)
+##       Total                 64224 (100.0%)   5383 (100.0%)   69607 (100.0%)
+## ----------- ------------- ---------------- --------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##   4124.593     2       0    
+## ----------------------------
+\end{verbatim}
+
+\hypertarget{ethnicity}{%
+\subsection{Ethnicity}\label{ethnicity}}
+
+\hypertarget{h1n1-2}{%
+\subsection{H1N1}\label{h1n1-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Creating a variable to classify the ethnicity classes}
+\NormalTok{dados_h1n1 <-}\StringTok{  }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ethnicity =} \KeywordTok{case_when}\NormalTok{(CS_RACA }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "White"}\NormalTok{,}
+\NormalTok{                             CS_RACA }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "Black"}\NormalTok{,}
+\NormalTok{                             CS_RACA }\OperatorTok{==}\StringTok{ }\DecValTok{3} \OperatorTok{~}\StringTok{ "Yellow"}\NormalTok{,}
+\NormalTok{                             CS_RACA }\OperatorTok{==}\StringTok{ }\DecValTok{4} \OperatorTok{~}\StringTok{ "Brown"}\NormalTok{,}
+\NormalTok{                             CS_RACA }\OperatorTok{==}\StringTok{ }\DecValTok{5} \OperatorTok{~}\StringTok{ "Indigenous"}\NormalTok{,}
+                               \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{questionr}\OperatorTok{::}\KeywordTok{freq}\NormalTok{(}
+\NormalTok{  dados_h1n1}\OperatorTok{$}\NormalTok{ethnicity,}
+  \DataTypeTok{cum =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{total =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{na.last =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{valid =} \OtherTok{FALSE}
+\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{kable}\NormalTok{(}\DataTypeTok{caption =} \StringTok{"Frequency table for Ethnicity - H1N1 data"}\NormalTok{, }\DataTypeTok{digits =} \DecValTok{2}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-38}Frequency table for Ethnicity - H1N1 data}
+\centering
+\begin{tabular}[t]{l|r|r}
+\hline
+  & n & \%\\
+\hline
+Black & 380 & 4.3\\
+\hline
+Brown & 1495 & 16.9\\
+\hline
+Indigenous & 27 & 0.3\\
+\hline
+White & 6119 & 69.1\\
+\hline
+Yellow & 70 & 0.8\\
+\hline
+NA & 763 & 8.6\\
+\hline
+Total & 8854 & 100.0\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(ethnicity, pregnant_YN, }\DataTypeTok{prop=}\StringTok{"c"}\NormalTok{,}\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{,}\DataTypeTok{chisq =} \OtherTok{FALSE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Column Proportions  
+## ethnicity * pregnant_YN  
+## Data Frame: dados_h1n1  
+## 
+## ------------ ------------- --------------- --------------- ---------------
+##                pregnant_YN              no             yes           Total
+##    ethnicity                                                              
+##        Black                  205 (  3.7%)    175 (  7.0%)    380 (  4.7%)
+##        Brown                  872 ( 15.6%)    623 ( 25.0%)   1495 ( 18.5%)
+##   Indigenous                   21 (  0.4%)      6 (  0.2%)     27 (  0.3%)
+##        White                 4446 ( 79.4%)   1673 ( 67.1%)   6119 ( 75.6%)
+##       Yellow                   53 (  0.9%)     17 (  0.7%)     70 (  0.9%)
+##        Total                 5597 (100.0%)   2494 (100.0%)   8091 (100.0%)
+## ------------ ------------- --------------- --------------- ---------------
+\end{verbatim}
+
+The Exact's Fisher Test is applied considering that some frequencies are
+too small (less than 5).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fisher.test}\NormalTok{(dados_h1n1}\OperatorTok{$}\NormalTok{ethnicity, dados_h1n1}\OperatorTok{$}\NormalTok{pregnant_YN,}\DataTypeTok{simulate.p.value =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Fisher's Exact Test for Count Data with simulated p-value (based on
+##  2000 replicates)
+## 
+## data:  dados_h1n1$ethnicity and dados_h1n1$pregnant_YN
+## p-value = 0.0004998
+## alternative hypothesis: two.sided
+\end{verbatim}
+
+\hypertarget{covid-19-2}{%
+\subsubsection{COVID-19}\label{covid-19-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Creating a variable to classify the ethnicity classes}
+\NormalTok{dados_covid <-}\StringTok{  }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ethnicity =} \KeywordTok{case_when}\NormalTok{(CS_RACA }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "White"}\NormalTok{,}
+\NormalTok{                             CS_RACA }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "Black"}\NormalTok{,}
+\NormalTok{                             CS_RACA }\OperatorTok{==}\StringTok{ }\DecValTok{3} \OperatorTok{~}\StringTok{ "Yellow"}\NormalTok{,}
+\NormalTok{                             CS_RACA }\OperatorTok{==}\StringTok{ }\DecValTok{4} \OperatorTok{~}\StringTok{ "Brown"}\NormalTok{,}
+\NormalTok{                             CS_RACA }\OperatorTok{==}\StringTok{ }\DecValTok{5} \OperatorTok{~}\StringTok{ "Indigenous"}\NormalTok{,}
+                               \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{questionr}\OperatorTok{::}\KeywordTok{freq}\NormalTok{(}
+\NormalTok{  dados_covid}\OperatorTok{$}\NormalTok{ethnicity,}
+  \DataTypeTok{cum =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{total =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{na.last =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{valid =} \OtherTok{FALSE}
+\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{kable}\NormalTok{(}\DataTypeTok{caption =} \StringTok{"Frequency table for Ethnicity - COVID-19 data"}\NormalTok{, }\DataTypeTok{digits =} \DecValTok{2}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-42}Frequency table for Ethnicity - COVID-19 data}
+\centering
+\begin{tabular}[t]{l|r|r}
+\hline
+  & n & \%\\
+\hline
+Black & 3132 & 4.5\\
+\hline
+Brown & 22233 & 31.9\\
+\hline
+Indigenous & 129 & 0.2\\
+\hline
+White & 29743 & 42.7\\
+\hline
+Yellow & 695 & 1.0\\
+\hline
+NA & 13675 & 19.6\\
+\hline
+Total & 69607 & 100.0\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(ethnicity, pregnant_YN, }\DataTypeTok{prop=}\StringTok{"c"}\NormalTok{,}\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{,}\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Column Proportions  
+## ethnicity * pregnant_YN  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------ ------------- ---------------- --------------- ----------------
+##                pregnant_YN               no             yes            Total
+##    ethnicity                                                                
+##        Black                  2839 (  5.5%)    293 (  6.7%)    3132 (  5.6%)
+##        Brown                 20117 ( 39.0%)   2116 ( 48.0%)   22233 ( 39.8%)
+##   Indigenous                   112 (  0.2%)     17 (  0.4%)     129 (  0.2%)
+##        White                 27815 ( 54.0%)   1928 ( 43.8%)   29743 ( 53.2%)
+##       Yellow                   643 (  1.2%)     52 (  1.2%)     695 (  1.2%)
+##        Total                 51526 (100.0%)   4406 (100.0%)   55932 (100.0%)
+## ------------ ------------- ---------------- --------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    176.751     4       0    
+## ----------------------------
+\end{verbatim}
+
+\hypertarget{displacement}{%
+\subsection{Displacement}\label{displacement}}
+
+Displacement: change city to access health care.
+
+\hypertarget{covid-19-3}{%
+\subsubsection{COVID-19}\label{covid-19-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Creating a variable to identify the need to move to another city other than where they live}
+\NormalTok{dados_covid <-}\StringTok{ }\NormalTok{dados_covid }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{displacement =} \KeywordTok{case_when}\NormalTok{((CO_MUN_RES }\OperatorTok{==}\StringTok{ }\NormalTok{CO_MU_INTE) }\OperatorTok{&}\StringTok{ }
+\StringTok{                                  }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(CO_MU_INTE) }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(CO_MUN_RES) }\OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+\NormalTok{                                (CO_MUN_RES }\OperatorTok{!=}\StringTok{ }\NormalTok{CO_MU_INTE) }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(CO_MU_INTE) }\OperatorTok{&}\StringTok{ }
+\StringTok{                                  }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(CO_MUN_RES) }\OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+                                \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}
+\NormalTok{                                )}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, displacement, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * displacement  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- -------------- --------------- --------------- ----------------
+##                 displacement              no             yes            Total
+##   pregnant_YN                                                                
+##            no                  42351 (71.2%)   17109 (28.8%)   59460 (100.0%)
+##           yes                   3272 (63.5%)    1879 (36.5%)    5151 (100.0%)
+##         Total                  45623 (70.6%)   18988 (29.4%)   64611 (100.0%)
+## ------------- -------------- --------------- --------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##   135.2216     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     1.42        1.34       1.51   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     1.12       1.12      1.12   
+## --------------------------------
+\end{verbatim}
+
+Map to visualize the displacement rate by state:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d1 <-}\StringTok{ }\NormalTok{dados_covid}
+\NormalTok{estado <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{unique}\NormalTok{(d1}\OperatorTok{$}\NormalTok{SG_UF_NOT))}
+\NormalTok{valor <-}\StringTok{ }\KeywordTok{data.table}\NormalTok{(}\KeywordTok{prop.table}\NormalTok{(}\KeywordTok{table}\NormalTok{(d1}\OperatorTok{$}\NormalTok{SG_UF_NOT,d1}\OperatorTok{$}\NormalTok{displacement),}\DecValTok{1}\NormalTok{))}
+\NormalTok{valor <-}\StringTok{ }\NormalTok{valor[valor}\OperatorTok{$}\NormalTok{V2}\OperatorTok{==}\StringTok{"yes"}\NormalTok{,]}
+\NormalTok{dt1_estadual <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\StringTok{"uf"}\NormalTok{=valor}\OperatorTok{$}\NormalTok{V1,}\StringTok{"T1"}\NormalTok{=valor}\OperatorTok{$}\NormalTok{N}\OperatorTok{*}\DecValTok{100}\NormalTok{)}
+\NormalTok{dt <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"AC"}\NormalTok{,}\DecValTok{12}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"AL"}\NormalTok{,}\DecValTok{27}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"AP"}\NormalTok{,}\DecValTok{16}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"AM"}\NormalTok{,}\DecValTok{13}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"BA"}\NormalTok{,}\DecValTok{29}\NormalTok{), }
+              \KeywordTok{c}\NormalTok{(}\StringTok{"CE"}\NormalTok{,}\DecValTok{23}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"DF"}\NormalTok{,}\DecValTok{53}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"ES"}\NormalTok{,}\DecValTok{32}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"GO"}\NormalTok{,}\DecValTok{52}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"MA"}\NormalTok{,}\DecValTok{21}\NormalTok{), }
+              \KeywordTok{c}\NormalTok{(}\StringTok{"MT"}\NormalTok{,}\DecValTok{51}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"MS"}\NormalTok{,}\DecValTok{50}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"MG"}\NormalTok{,}\DecValTok{31}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"PA"}\NormalTok{,}\DecValTok{15}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"PB"}\NormalTok{,}\DecValTok{25}\NormalTok{), }
+              \KeywordTok{c}\NormalTok{(}\StringTok{"PR"}\NormalTok{,}\DecValTok{41}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"PE"}\NormalTok{,}\DecValTok{26}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"PI"}\NormalTok{,}\DecValTok{22}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"RN"}\NormalTok{,}\DecValTok{24}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"RS"}\NormalTok{,}\DecValTok{43}\NormalTok{), }
+              \KeywordTok{c}\NormalTok{(}\StringTok{"RJ"}\NormalTok{,}\DecValTok{33}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"RO"}\NormalTok{,}\DecValTok{11}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"RR"}\NormalTok{,}\DecValTok{14}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"SC"}\NormalTok{,}\DecValTok{42}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"SP"}\NormalTok{,}\DecValTok{35}\NormalTok{), }
+              \KeywordTok{c}\NormalTok{(}\StringTok{"SE"}\NormalTok{,}\DecValTok{28}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"TO"}\NormalTok{,}\DecValTok{17}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\NormalTok{data.table }\OperatorTok{%>%}\StringTok{ `}\DataTypeTok{colnames<-}\StringTok{`}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"uf"}\NormalTok{,}\StringTok{"id"}\NormalTok{))}
+\NormalTok{mapaUF <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"mapaUF.Rds"}\NormalTok{)}
+\NormalTok{dt1 <-}\StringTok{ }\KeywordTok{full_join}\NormalTok{(dt, dt1_estadual, }\DataTypeTok{by =} \StringTok{"uf"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(dt1) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_map}\NormalTok{(}\DataTypeTok{map =}\NormalTok{ mapaUF, }\DataTypeTok{color =} \StringTok{'gray30'}\NormalTok{, }\KeywordTok{aes_string}\NormalTok{(}\DataTypeTok{map_id =} \StringTok{"id"}\NormalTok{, }\DataTypeTok{fill =} \StringTok{"T1"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_path}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mapaUF, }\DataTypeTok{color =} \StringTok{'gray30'}\NormalTok{, }\DataTypeTok{size =} \FloatTok{.1}\NormalTok{, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }\DataTypeTok{y =}\NormalTok{ lat, }\DataTypeTok{group =}\NormalTok{ group)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_void}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{coord_equal}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Displacement rate [%]"}\NormalTok{,}\DataTypeTok{title=}\StringTok{"COVID-19 notifications"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_gradient2}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{25}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{75}\NormalTok{),}\DataTypeTok{limits=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{75}\NormalTok{), }\DataTypeTok{low =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{mid =} \StringTok{"white"}\NormalTok{,}\DataTypeTok{high =} \StringTok{"purple"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Report_paper_COVID-19_vs_H1N1_files/figure-latex/unnamed-chunk-46-1.pdf}
+
+\hypertarget{h1n1-3}{%
+\subsubsection{H1N1}\label{h1n1-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Creating a variable to identify the need to move to another city other than where they live}
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{displacement =} \KeywordTok{case_when}\NormalTok{((ID_MN_RESI  }\OperatorTok{==}\StringTok{ }\NormalTok{CO_MU_INTE) }\OperatorTok{&}\StringTok{ }
+\StringTok{                                  }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(CO_MU_INTE) }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(ID_MN_RESI) }\OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+\NormalTok{                                (ID_MN_RESI }\OperatorTok{!=}\StringTok{ }\NormalTok{CO_MU_INTE) }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(CO_MU_INTE) }\OperatorTok{&}\StringTok{ }
+\StringTok{                                  }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(ID_MN_RESI) }\OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+                                \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}
+\NormalTok{                                )}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, displacement, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * displacement  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- -------------- -------------- -------------- ---------------
+##                 displacement             no            yes           Total
+##   pregnant_YN                                                             
+##            no                  2922 (79.7%)    745 (20.3%)   3667 (100.0%)
+##           yes                  1706 (78.4%)    471 (21.6%)   2177 (100.0%)
+##         Total                  4628 (79.2%)   1216 (20.8%)   5844 (100.0%)
+## ------------- -------------- -------------- -------------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    1.3632      1     0.243  
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     1.08        0.95       1.23   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     1.02       1.02      1.02   
+## --------------------------------
+\end{verbatim}
+
+Map to visualize the displacement rate by state:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#H1N1}
+\NormalTok{d1 <-}\StringTok{ }\NormalTok{dados_h1n1}
+\NormalTok{valor <-}\StringTok{ }\KeywordTok{data.table}\NormalTok{(}\KeywordTok{prop.table}\NormalTok{(}\KeywordTok{table}\NormalTok{(d1}\OperatorTok{$}\NormalTok{SG_UF_NOT,d1}\OperatorTok{$}\NormalTok{displacement),}\DecValTok{1}\NormalTok{))}
+\NormalTok{valor <-}\StringTok{ }\NormalTok{valor[valor}\OperatorTok{$}\NormalTok{V2}\OperatorTok{==}\StringTok{"yes"}\NormalTok{,]}
+\NormalTok{dt1_estadual <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\StringTok{"id"}\NormalTok{=valor}\OperatorTok{$}\NormalTok{V1,}\StringTok{"T1"}\NormalTok{=valor}\OperatorTok{$}\NormalTok{N}\OperatorTok{*}\DecValTok{100}\NormalTok{)}
+\NormalTok{dt <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"AC"}\NormalTok{,}\DecValTok{12}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"AL"}\NormalTok{,}\DecValTok{27}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"AP"}\NormalTok{,}\DecValTok{16}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"AM"}\NormalTok{,}\DecValTok{13}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"BA"}\NormalTok{,}\DecValTok{29}\NormalTok{), }
+              \KeywordTok{c}\NormalTok{(}\StringTok{"CE"}\NormalTok{,}\DecValTok{23}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"DF"}\NormalTok{,}\DecValTok{53}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"ES"}\NormalTok{,}\DecValTok{32}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"GO"}\NormalTok{,}\DecValTok{52}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"MA"}\NormalTok{,}\DecValTok{21}\NormalTok{), }
+              \KeywordTok{c}\NormalTok{(}\StringTok{"MT"}\NormalTok{,}\DecValTok{51}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"MS"}\NormalTok{,}\DecValTok{50}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"MG"}\NormalTok{,}\DecValTok{31}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"PA"}\NormalTok{,}\DecValTok{15}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"PB"}\NormalTok{,}\DecValTok{25}\NormalTok{), }
+              \KeywordTok{c}\NormalTok{(}\StringTok{"PR"}\NormalTok{,}\DecValTok{41}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"PE"}\NormalTok{,}\DecValTok{26}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"PI"}\NormalTok{,}\DecValTok{22}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"RN"}\NormalTok{,}\DecValTok{24}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"RS"}\NormalTok{,}\DecValTok{43}\NormalTok{), }
+              \KeywordTok{c}\NormalTok{(}\StringTok{"RJ"}\NormalTok{,}\DecValTok{33}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"RO"}\NormalTok{,}\DecValTok{11}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"RR"}\NormalTok{,}\DecValTok{14}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"SC"}\NormalTok{,}\DecValTok{42}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"SP"}\NormalTok{,}\DecValTok{35}\NormalTok{), }
+              \KeywordTok{c}\NormalTok{(}\StringTok{"SE"}\NormalTok{,}\DecValTok{28}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"TO"}\NormalTok{,}\DecValTok{17}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\NormalTok{data.table }\OperatorTok{%>%}\StringTok{ `}\DataTypeTok{colnames<-}\StringTok{`}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"uf"}\NormalTok{,}\StringTok{"id"}\NormalTok{))}
+\NormalTok{mapaUF <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"mapaUF.Rds"}\NormalTok{)}
+\NormalTok{dt1 <-}\StringTok{ }\KeywordTok{full_join}\NormalTok{(dt, dt1_estadual, }\DataTypeTok{by =} \StringTok{"id"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(dt1) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_map}\NormalTok{(}\DataTypeTok{map =}\NormalTok{ mapaUF, }\DataTypeTok{color =} \StringTok{'gray30'}\NormalTok{, }\KeywordTok{aes_string}\NormalTok{(}\DataTypeTok{map_id =} \StringTok{"id"}\NormalTok{, }\DataTypeTok{fill =} \StringTok{"T1"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_path}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mapaUF, }\DataTypeTok{color =} \StringTok{'gray30'}\NormalTok{, }\DataTypeTok{size =} \FloatTok{.1}\NormalTok{, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }\DataTypeTok{y =}\NormalTok{ lat, }\DataTypeTok{group =}\NormalTok{ group)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_void}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{coord_equal}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Displacement rate [%]"}\NormalTok{,}\DataTypeTok{title=}\StringTok{"H1N1 Notifications"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_gradient2}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{25}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{75}\NormalTok{),}\DataTypeTok{limits=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{75}\NormalTok{), }\DataTypeTok{low =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{mid =} \StringTok{"white"}\NormalTok{,}\DataTypeTok{high =} \StringTok{"purple"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Report_paper_COVID-19_vs_H1N1_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+Breslow-Day Test to compare the displacement need in both pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"displacement"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp     stat      p_valor
+## X-squared h1n1-covid 13.96446 0.0001862991
+\end{verbatim}
+
+\hypertarget{vaccine}{%
+\subsection{Vaccine}\label{vaccine}}
+
+Now the notifications where the case is identified as flu vaccinated
+will be analyzed.
+
+\hypertarget{h1n1-4}{%
+\subsubsection{H1N1}\label{h1n1-4}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Creating a variable to identify flu vaccinated}
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{vaccine =} \KeywordTok{case_when}\NormalTok{(VACINA }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                            VACINA }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                            \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{)}
+\NormalTok{         )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, vaccine, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * vaccine  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- --------- -------------- ------------- ---------------
+##                 vaccine             No           Yes           Total
+##   pregnant_YN                                                       
+##            no             4448 (89.0%)   549 (11.0%)   4997 (100.0%)
+##           yes             2074 (95.0%)   110 ( 5.0%)   2184 (100.0%)
+##         Total             6522 (90.8%)   659 ( 9.2%)   7181 (100.0%)
+## ------------- --------- -------------- ------------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##     63.84      1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.43        0.35       0.53   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.94       0.94      0.94   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-4}{%
+\subsubsection{COVID-19}\label{covid-19-4}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Creating a variable to identify flu vaccinated}
+\NormalTok{dados_covid <-}\StringTok{ }\NormalTok{dados_covid }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{vaccine =} \KeywordTok{case_when}\NormalTok{(VACINA }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                            VACINA }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                            \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{)}
+\NormalTok{         )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, vaccine, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * vaccine  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- --------- --------------- -------------- ----------------
+##                 vaccine              No            Yes            Total
+##   pregnant_YN                                                          
+##            no             23450 (76.8%)   7080 (23.2%)   30530 (100.0%)
+##           yes              1539 (62.9%)    906 (37.1%)    2445 (100.0%)
+##         Total             24989 (75.8%)   7986 (24.2%)   32975 (100.0%)
+## ------------- --------- --------------- -------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##   236.3533     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     1.95        1.79       2.13   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     1.22       1.22      1.22   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect of flu vaccine in both pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"vaccine"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp     stat p_valor
+## X-squared h1n1-covid 185.9719       0
+\end{verbatim}
+
+\hypertarget{comorbidities}{%
+\section{Comorbidities}\label{comorbidities}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cardiac =} \KeywordTok{case_when}\NormalTok{(CARDIOPATI }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                                CARDIOPATI }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                                \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pneumologic =} \KeywordTok{case_when}\NormalTok{(PNEUMOPATI }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                                PNEUMOPATI }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                                \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{renal =} \KeywordTok{case_when}\NormalTok{(RENAL }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                           RENAL }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                           \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{imuno =} \KeywordTok{case_when}\NormalTok{(IMUNODEPRE }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                                IMUNODEPRE }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                                \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{hematologic =} \KeywordTok{case_when}\NormalTok{(HEMOGLOBI }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                                HEMOGLOBI }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                                \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+
+\NormalTok{dados_covid <-}\StringTok{ }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cardiac =} \KeywordTok{case_when}\NormalTok{(CARDIOPATI }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                                CARDIOPATI }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                                \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+
+\NormalTok{dados_covid <-}\StringTok{ }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pneumologic =} \KeywordTok{case_when}\NormalTok{((PNEUMOPATI }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{ASMA }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                                (PNEUMOPATI }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{|}\StringTok{ }\NormalTok{ASMA }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                                \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+
+\NormalTok{dados_covid <-}\StringTok{ }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{renal =} \KeywordTok{case_when}\NormalTok{(RENAL }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                           RENAL }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                           \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+
+\NormalTok{dados_covid <-}\StringTok{ }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{imuno =} \KeywordTok{case_when}\NormalTok{(IMUNODEPRE }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                                IMUNODEPRE }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                                \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+
+\NormalTok{dados_covid <-}\StringTok{ }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{hematologic =} \KeywordTok{case_when}\NormalTok{(HEMATOLOGI }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Yes"}\NormalTok{,}
+\NormalTok{                                HEMATOLOGI }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "No"}\NormalTok{,}
+                                \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{cardiac-disease}{%
+\subsection{Cardiac disease}\label{cardiac-disease}}
+
+\hypertarget{h1n1-5}{%
+\subsubsection{H1N1:}\label{h1n1-5}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, cardiac, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * cardiac  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- --------- -------------- ------------ ---------------
+##                 cardiac             No          Yes           Total
+##   pregnant_YN                                                      
+##            no             5429 (97.1%)   163 (2.9%)   5592 (100.0%)
+##           yes             2432 (98.5%)    38 (1.5%)   2470 (100.0%)
+##         Total             7861 (97.5%)   201 (2.5%)   8062 (100.0%)
+## ------------- --------- -------------- ------------ ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    12.7914     1     3e-04  
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.52        0.36       0.74   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.99       0.99      0.99   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-5}{%
+\subsubsection{COVID-19:}\label{covid-19-5}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, cardiac, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * cardiac  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- --------- --------------- --------------- ----------------
+##                 cardiac              No             Yes            Total
+##   pregnant_YN                                                           
+##            no             13141 (57.2%)    9825 (42.8%)   22966 (100.0%)
+##           yes              1421 (81.3%)     327 (18.7%)    1748 (100.0%)
+##         Total             14562 (58.9%)   10152 (41.1%)   24714 (100.0%)
+## ------------- --------- --------------- --------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    387.941     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.31        0.27       0.35   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.70       0.70      0.70   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect cardiac morbidity in both
+pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"cardiac"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp     stat     p_valor
+## X-squared h1n1-covid 7.573643 0.005922794
+\end{verbatim}
+
+\hypertarget{pneumologic}{%
+\subsection{Pneumologic}\label{pneumologic}}
+
+\hypertarget{h1n1-6}{%
+\subsubsection{H1N1:}\label{h1n1-6}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, pneumologic, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * pneumologic  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- ------------- -------------- ------------ ---------------
+##                 pneumologic             No          Yes           Total
+##   pregnant_YN                                                          
+##            no                 5185 (92.6%)   417 (7.4%)   5602 (100.0%)
+##           yes                 2346 (95.3%)   116 (4.7%)   2462 (100.0%)
+##         Total                 7531 (93.4%)   533 (6.6%)   8064 (100.0%)
+## ------------- ------------- -------------- ------------ ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    20.2427     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.61        0.50       0.76   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.97       0.97      0.97   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-6}{%
+\subsubsection{COVID-19:}\label{covid-19-6}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, pneumologic, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * pneumologic  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- ------------- --------------- -------------- ----------------
+##                 pneumologic              No            Yes            Total
+##   pregnant_YN                                                              
+##            no                 17015 (82.0%)   3728 (18.0%)   20743 (100.0%)
+##           yes                  1500 (86.6%)    233 (13.4%)    1733 (100.0%)
+##         Total                 18515 (82.4%)   3961 (17.6%)   22476 (100.0%)
+## ------------- ------------- --------------- -------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    22.2714     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.71        0.61       0.82   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.95       0.95      0.95   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect of pneumologic morbidity in both
+pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"pneumologic"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp     stat   p_valor
+## X-squared h1n1-covid 1.199801 0.2733615
+\end{verbatim}
+
+\hypertarget{renal}{%
+\subsection{Renal}\label{renal}}
+
+\hypertarget{h1n1-7}{%
+\subsubsection{H1N1:}\label{h1n1-7}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, renal, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * renal  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- ------- --------------- ----------- ---------------
+##                 renal              No         Yes           Total
+##   pregnant_YN                                                    
+##            no           5521 ( 98.8%)   66 (1.2%)   5587 (100.0%)
+##           yes           2456 ( 99.6%)   10 (0.4%)   2466 (100.0%)
+##         Total           7977 ( 99.1%)   76 (0.9%)   8053 (100.0%)
+## ------------- ------- --------------- ----------- ---------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.34        0.17       0.66   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.99       0.99      0.99   
+## --------------------------------
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fisher.test}\NormalTok{(dados_h1n1}\OperatorTok{$}\NormalTok{renal, dados_h1n1}\OperatorTok{$}\NormalTok{pregnant_YN)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Fisher's Exact Test for Count Data
+## 
+## data:  dados_h1n1$renal and dados_h1n1$pregnant_YN
+## p-value = 0.0006227
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##  0.1558760 0.6680346
+## sample estimates:
+## odds ratio 
+##  0.3406406
+\end{verbatim}
+
+\hypertarget{covid-19-7}{%
+\subsubsection{COVID-19:}\label{covid-19-7}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, renal, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * renal  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- ------- --------------- ------------- ----------------
+##                 renal              No           Yes            Total
+##   pregnant_YN                                                       
+##            no           18233 (92.1%)   1563 (7.9%)   19796 (100.0%)
+##           yes            1614 (97.9%)     35 (2.1%)    1649 (100.0%)
+##         Total           19847 (92.5%)   1598 (7.5%)   21445 (100.0%)
+## ------------- ------- --------------- ------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    72.7285     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.25        0.18       0.35   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.94       0.94      0.94   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect of renal morbidity in both
+pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"renal"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp    stat   p_valor
+## X-squared h1n1-covid 0.61435 0.4331546
+\end{verbatim}
+
+\hypertarget{imunossupression}{%
+\subsection{Imunossupression}\label{imunossupression}}
+
+\hypertarget{h1n1-8}{%
+\subsubsection{H1N1:}\label{h1n1-8}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, imuno, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * imuno  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- ------- -------------- ------------ ---------------
+##                 imuno             No          Yes           Total
+##   pregnant_YN                                                    
+##            no           5414 (96.8%)   177 (3.2%)   5591 (100.0%)
+##           yes           2423 (98.1%)    47 (1.9%)   2470 (100.0%)
+##         Total           7837 (97.2%)   224 (2.8%)   8061 (100.0%)
+## ------------- ------- -------------- ------------ ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    9.6528      1    0.0019  
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.59        0.43       0.82   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.99       0.99      0.99   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-8}{%
+\subsubsection{COVID-19:}\label{covid-19-8}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, imuno, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * imuno  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- ------- --------------- ------------- ----------------
+##                 imuno              No           Yes            Total
+##   pregnant_YN                                                       
+##            no           18059 (90.5%)   1885 (9.5%)   19944 (100.0%)
+##           yes            1602 (96.9%)     52 (3.1%)    1654 (100.0%)
+##         Total           19661 (91.0%)   1937 (9.0%)   21598 (100.0%)
+## ------------- ------- --------------- ------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    73.6598     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.31        0.23       0.41   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.93       0.93      0.93   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect of imunosupression in both
+pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"imuno"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp     stat     p_valor
+## X-squared h1n1-covid 9.009579 0.002685683
+\end{verbatim}
+
+\hypertarget{hematologic}{%
+\subsection{Hematologic}\label{hematologic}}
+
+\hypertarget{h1n1-9}{%
+\subsubsection{H1N1:}\label{h1n1-9}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, hematologic, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * hematologic  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- ------------- -------------- ----------- ---------------
+##                 hematologic             No         Yes           Total
+##   pregnant_YN                                                         
+##            no                 5556 (99.5%)   28 (0.5%)   5584 (100.0%)
+##           yes                 2447 (99.4%)   14 (0.6%)   2461 (100.0%)
+##         Total                 8003 (99.5%)   42 (0.5%)   8045 (100.0%)
+## ------------- ------------- -------------- ----------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    0.0479      1    0.8267  
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     1.14        0.60       2.16   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     1.00       1.00      1.00   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-9}{%
+\subsubsection{COVID-19:}\label{covid-19-9}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, hematologic, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * hematologic  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- ------------- --------------- ------------ ----------------
+##                 hematologic              No          Yes            Total
+##   pregnant_YN                                                            
+##            no                 19050 (97.2%)   557 (2.8%)   19607 (100.0%)
+##           yes                  1632 (98.4%)    26 (1.6%)    1658 (100.0%)
+##         Total                 20682 (97.3%)   583 (2.7%)   21265 (100.0%)
+## ------------- ------------- --------------- ------------ ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    8.8149      1     0.003  
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.54        0.37       0.81   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.99       0.99      0.99   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect of hematologic issues in both
+pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"hematologic"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp     stat    p_valor
+## X-squared h1n1-covid 3.748672 0.05284947
+\end{verbatim}
+
+\hypertarget{severity}{%
+\section{Severity}\label{severity}}
+
+For the analysis of severity, all cases where hospitalization occurred
+were considered as serious cases. The cases where hospitalization was
+not necessary were considered as less serious cases.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#H1N1}
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{severity =} \KeywordTok{factor}\NormalTok{(}\KeywordTok{case_when}\NormalTok{(HOSPITAL }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "hospitalized"}\NormalTok{,}
+\NormalTok{                               HOSPITAL }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "non-hospitalized"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{)))}
+\NormalTok{dados_h1n1}\OperatorTok{$}\NormalTok{severity <-}\StringTok{ }\KeywordTok{relevel}\NormalTok{(}
+\NormalTok{  dados_h1n1}\OperatorTok{$}\NormalTok{severity, }
+  \DataTypeTok{ref =} \StringTok{"non-hospitalized"}
+\NormalTok{)}
+
+\CommentTok{#COVID-19}
+\NormalTok{dados_covid <-}\StringTok{ }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{severity =} \KeywordTok{factor}\NormalTok{(}\KeywordTok{case_when}\NormalTok{(HOSPITAL }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "hospitalized"}\NormalTok{,}
+\NormalTok{                               HOSPITAL }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "non-hospitalized"}\NormalTok{,}
+                               \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{)))}
+\NormalTok{dados_covid}\OperatorTok{$}\NormalTok{severity <-}\StringTok{ }\KeywordTok{relevel}\NormalTok{(}
+\NormalTok{  dados_covid}\OperatorTok{$}\NormalTok{severity, }
+  \DataTypeTok{ref =} \StringTok{"non-hospitalized"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{h1n1-10}{%
+\subsubsection{H1N1}\label{h1n1-10}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, severity, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * severity  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- ---------- ------------------ -------------- ---------------
+##                 severity   non-hospitalized   hospitalized           Total
+##   pregnant_YN                                                             
+##            no                  2166 (36.9%)   3698 (63.1%)   5864 (100.0%)
+##           yes                   535 (19.6%)   2190 (80.4%)   2725 (100.0%)
+##         Total                  2701 (31.4%)   5888 (68.6%)   8589 (100.0%)
+## ------------- ---------- ------------------ -------------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##   257.6111     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     2.40        2.15       2.67   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     1.88       1.88      1.88   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-10}{%
+\subsubsection{COVID-19}\label{covid-19-10}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, severity, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * severity  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- ---------- ------------------ --------------- ----------------
+##                 severity   non-hospitalized    hospitalized            Total
+##   pregnant_YN                                                               
+##            no                   3406 (5.4%)   59463 (94.6%)   62869 (100.0%)
+##           yes                    163 (3.1%)    5151 (96.9%)    5314 (100.0%)
+##         Total                   3569 (5.2%)   64614 (94.8%)   68183 (100.0%)
+## ------------- ---------- ------------------ --------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    54.0889     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     1.81        1.54       2.12   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     1.77       1.77      1.77   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the severity of both pandemics.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"severity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp     stat     p_valor
+## X-squared h1n1-covid 8.097947 0.004431541
+\end{verbatim}
+
+In sequence, we analyze only hospitalized cases:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#H1N1}
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(severity }\OperatorTok{==}\StringTok{ "hospitalized"}\NormalTok{)}
+
+\CommentTok{#COVID-19}
+\NormalTok{dados_covid <-}\StringTok{ }\NormalTok{dados_covid }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(severity }\OperatorTok{==}\StringTok{ "hospitalized"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{symptoms}{%
+\section{Symptoms}\label{symptoms}}
+
+\hypertarget{fever}{%
+\subsection{Fever}\label{fever}}
+
+\hypertarget{h1n1-11}{%
+\subsubsection{H1N1}\label{h1n1-11}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_h1n1 <-}\StringTok{  }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{fever =} \KeywordTok{case_when}\NormalTok{(FEBRE }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+\NormalTok{                              FEBRE }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, fever, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * fever  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- ------- ------------ -------------- ---------------
+##                 fever           no            yes           Total
+##   pregnant_YN                                                    
+##            no           114 (3.1%)   3557 (96.9%)   3671 (100.0%)
+##           yes           120 (5.5%)   2048 (94.5%)   2168 (100.0%)
+##         Total           234 (4.0%)   5605 (96.0%)   5839 (100.0%)
+## ------------- ------- ------------ -------------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    20.2889     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.55        0.42       0.71   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.56       0.56      0.56   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-11}{%
+\subsubsection{COVID-19}\label{covid-19-11}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_covid <-}\StringTok{  }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{fever =} \KeywordTok{case_when}\NormalTok{(FEBRE }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+\NormalTok{                              FEBRE }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, fever, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * fever  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- ------- --------------- --------------- ----------------
+##                 fever              no             yes            Total
+##   pregnant_YN                                                         
+##            no           14652 (27.9%)   37842 (72.1%)   52494 (100.0%)
+##           yes            1420 (31.6%)    3076 (68.4%)    4496 (100.0%)
+##         Total           16072 (28.2%)   40918 (71.8%)   56990 (100.0%)
+## ------------- ------- --------------- --------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    27.3945     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.84        0.79       0.90   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.88       0.88      0.88   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect of fever in both pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"fever"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp     stat     p_valor
+## X-squared h1n1-covid 9.725931 0.001816863
+\end{verbatim}
+
+\hypertarget{cough}{%
+\subsection{Cough}\label{cough}}
+
+\hypertarget{h1n1-12}{%
+\subsubsection{H1N1}\label{h1n1-12}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_h1n1 <-}\StringTok{  }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cough =} \KeywordTok{case_when}\NormalTok{(TOSSE }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+\NormalTok{                              TOSSE }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, cough, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * cough  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- ------- ------------ -------------- ---------------
+##                 cough           no            yes           Total
+##   pregnant_YN                                                    
+##            no           136 (3.7%)   3538 (96.3%)   3674 (100.0%)
+##           yes            81 (3.7%)   2091 (96.3%)   2172 (100.0%)
+##         Total           217 (3.7%)   5629 (96.3%)   5846 (100.0%)
+## ------------- ------- ------------ -------------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##       0        1       1    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.99        0.75       1.31   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.99       0.99      0.99   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-12}{%
+\subsubsection{COVID-19}\label{covid-19-12}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_covid <-}\StringTok{  }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cough =} \KeywordTok{case_when}\NormalTok{(TOSSE }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+\NormalTok{                              TOSSE }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, cough, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * cough  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- ------- --------------- --------------- ----------------
+##                 cough              no             yes            Total
+##   pregnant_YN                                                         
+##            no           10197 (18.9%)   43622 (81.1%)   53819 (100.0%)
+##           yes            1003 (21.5%)    3668 (78.5%)    4671 (100.0%)
+##         Total           11200 (19.1%)   47290 (80.9%)   58490 (100.0%)
+## ------------- ------- --------------- --------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    17.5519     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.85        0.79       0.92   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.88       0.88      0.88   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect of cough in both pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"cough"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp    stat   p_valor
+## X-squared h1n1-covid 1.01891 0.3127776
+\end{verbatim}
+
+\hypertarget{dyspnea}{%
+\subsection{Dyspnea}\label{dyspnea}}
+
+\hypertarget{h1n1-13}{%
+\subsubsection{H1N1}\label{h1n1-13}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_h1n1 <-}\StringTok{  }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dyspnea =} \KeywordTok{case_when}\NormalTok{(DISPNEIA }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+\NormalTok{                              DISPNEIA }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, dyspnea, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * dyspnea  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- --------- -------------- -------------- ---------------
+##                 dyspnea             no            yes           Total
+##   pregnant_YN                                                        
+##            no              667 (18.3%)   2972 (81.7%)   3639 (100.0%)
+##           yes              514 (24.1%)   1618 (75.9%)   2132 (100.0%)
+##         Total             1181 (20.5%)   4590 (79.5%)   5771 (100.0%)
+## ------------- --------- -------------- -------------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    27.2362     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.71        0.62       0.80   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.76       0.76      0.76   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-13}{%
+\subsubsection{COVID-19}\label{covid-19-13}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_covid <-}\StringTok{  }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dyspnea =} \KeywordTok{case_when}\NormalTok{(DISPNEIA }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+\NormalTok{                              DISPNEIA }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, dyspnea, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * dyspnea  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- --------- --------------- --------------- ----------------
+##                 dyspnea              no             yes            Total
+##   pregnant_YN                                                           
+##            no             11018 (20.7%)   42214 (79.3%)   53232 (100.0%)
+##           yes              1568 (34.7%)    2946 (65.3%)    4514 (100.0%)
+##         Total             12586 (21.8%)   45160 (78.2%)   57746 (100.0%)
+## ------------- --------- --------------- --------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##   480.2859     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.49        0.46       0.52   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.60       0.60      0.60   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect of dyspnea in both pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"dyspnea"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp     stat      p_valor
+## X-squared h1n1-covid 24.35352 8.018016e-07
+\end{verbatim}
+
+\hypertarget{sore-throat}{%
+\subsection{Sore throat}\label{sore-throat}}
+
+\hypertarget{h1n1-14}{%
+\subsubsection{H1N1}\label{h1n1-14}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_h1n1 <-}\StringTok{  }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sore_throat =} \KeywordTok{case_when}\NormalTok{(GARGANTA }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+\NormalTok{                              GARGANTA  }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, sore_throat, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * sore_throat  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- ------------- -------------- -------------- ---------------
+##                 sore_throat             no            yes           Total
+##   pregnant_YN                                                            
+##            no                 1661 (46.8%)   1890 (53.2%)   3551 (100.0%)
+##           yes                 1043 (50.4%)   1027 (49.6%)   2070 (100.0%)
+##         Total                 2704 (48.1%)   2917 (51.9%)   5621 (100.0%)
+## ------------- ------------- -------------- -------------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    6.6862      1    0.0097  
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.87        0.78       0.96   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.93       0.93      0.93   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-14}{%
+\subsubsection{COVID-19}\label{covid-19-14}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_covid <-}\StringTok{  }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sore_throat =} \KeywordTok{case_when}\NormalTok{(GARGANTA }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+\NormalTok{                              GARGANTA  }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, sore_throat, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * sore_throat  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- ------------- --------------- --------------- ----------------
+##                 sore_throat              no             yes            Total
+##   pregnant_YN                                                               
+##            no                 31319 (69.5%)   13765 (30.5%)   45084 (100.0%)
+##           yes                  2868 (72.6%)    1084 (27.4%)    3952 (100.0%)
+##         Total                 34187 (69.7%)   14849 (30.3%)   49036 (100.0%)
+## ------------- ------------- --------------- --------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    16.4221     1     1e-04  
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.86        0.80       0.92   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.96       0.96      0.96   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect of sore throat in both pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"sore_throat"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp        stat   p_valor
+## X-squared h1n1-covid 0.008784959 0.9253251
+\end{verbatim}
+
+\hypertarget{diarrhea}{%
+\subsection{Diarrhea}\label{diarrhea}}
+
+\hypertarget{h1n1-15}{%
+\subsubsection{H1N1}\label{h1n1-15}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_h1n1 <-}\StringTok{  }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{diarrhea =} \KeywordTok{case_when}\NormalTok{(DIARREIA }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+\NormalTok{                              DIARREIA }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, diarrhea, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * diarrhea  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- ---------- -------------- ------------- ---------------
+##                 diarrhea             no           yes           Total
+##   pregnant_YN                                                        
+##            no              2918 (84.2%)   548 (15.8%)   3466 (100.0%)
+##           yes              1814 (90.8%)   184 ( 9.2%)   1998 (100.0%)
+##         Total              4732 (86.6%)   732 (13.4%)   5464 (100.0%)
+## ------------- ---------- -------------- ------------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    47.0393     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.54        0.45       0.64   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.93       0.93      0.93   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-15}{%
+\subsubsection{COVID-19}\label{covid-19-15}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados_covid <-}\StringTok{  }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{diarrhea =} \KeywordTok{case_when}\NormalTok{(DIARREIA }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "yes"}\NormalTok{,}
+\NormalTok{                              DIARREIA }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "no"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, diarrhea, }\DataTypeTok{prop =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * diarrhea  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- ---------- --------------- --------------- ----------------
+##                 diarrhea              no             yes            Total
+##   pregnant_YN                                                            
+##            no              34139 (77.2%)   10106 (22.8%)   44245 (100.0%)
+##           yes               3287 (85.7%)     549 (14.3%)    3836 (100.0%)
+##         Total              37426 (77.8%)   10655 (22.2%)   48081 (100.0%)
+## ------------- ---------- --------------- --------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##   148.3761     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.56        0.51       0.62   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.90       0.90      0.90   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the effect of diarrhea in both pandemics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"diarrhea"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp      stat   p_valor
+## X-squared h1n1-covid 0.1830762 0.6687429
+\end{verbatim}
+
+\hypertarget{outcome}{%
+\section{Outcome}\label{outcome}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#H1N1}
+\NormalTok{dados_h1n1 <-}\StringTok{ }\NormalTok{dados_h1n1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{progression =} \KeywordTok{case_when}\NormalTok{(EVOLUCAO }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "cure"}\NormalTok{,}
+\NormalTok{                              EVOLUCAO }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "death"}\NormalTok{,}
+\NormalTok{                              EVOLUCAO }\OperatorTok{==}\StringTok{ }\DecValTok{3} \OperatorTok{~}\StringTok{ "death"}\NormalTok{,}
+\NormalTok{                              EVOLUCAO }\OperatorTok{==}\StringTok{ }\DecValTok{4} \OperatorTok{~}\StringTok{ "death"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\CommentTok{#COVID-19}
+\NormalTok{dados_covid <-}\StringTok{ }\NormalTok{dados_covid }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{progression =} \KeywordTok{case_when}\NormalTok{(EVOLUCAO }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "cure"}\NormalTok{,}
+\NormalTok{                              EVOLUCAO }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "death"}\NormalTok{,}
+\NormalTok{                              EVOLUCAO }\OperatorTok{==}\StringTok{ }\DecValTok{3} \OperatorTok{~}\StringTok{ "death"}\NormalTok{,}
+                              \OtherTok{TRUE} \OperatorTok{~}\StringTok{ }\OtherTok{NA_character_}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{h1n1-16}{%
+\subsubsection{H1N1}\label{h1n1-16}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_h1n1, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, progression, }\DataTypeTok{prop=}\StringTok{"r"}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * progression  
+## Data Frame: dados_h1n1  
+## 
+## 
+## ------------- ------------- -------------- ------------- ---------------
+##                 progression           cure         death           Total
+##   pregnant_YN                                                           
+##            no                 3024 (87.4%)   437 (12.6%)   3461 (100.0%)
+##           yes                 1806 (90.3%)   195 ( 9.7%)   2001 (100.0%)
+##         Total                 4830 (88.4%)   632 (11.6%)   5462 (100.0%)
+## ------------- ------------- -------------- ------------- ---------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##    10.0078     1    0.0016  
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.75        0.62       0.89   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.97       0.97      0.97   
+## --------------------------------
+\end{verbatim}
+
+\hypertarget{covid-19-16}{%
+\subsubsection{COVID-19}\label{covid-19-16}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(dados_covid, }\KeywordTok{ctable}\NormalTok{(pregnant_YN, progression, }\DataTypeTok{prop=}\StringTok{"r"}\NormalTok{, }\DataTypeTok{OR=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{useNA =} \StringTok{"no"}\NormalTok{, }\DataTypeTok{chisq =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Cross-Tabulation, Row Proportions  
+## pregnant_YN * progression  
+## Data Frame: dados_covid  
+## 
+## 
+## ------------- ------------- --------------- -------------- ----------------
+##                 progression            cure          death            Total
+##   pregnant_YN                                                              
+##            no                 44075 (82.6%)   9276 (17.4%)   53351 (100.0%)
+##           yes                  4124 (90.3%)    445 ( 9.7%)    4569 (100.0%)
+##         Total                 48199 (83.2%)   9721 (16.8%)   57920 (100.0%)
+## ------------- ------------- --------------- -------------- ----------------
+## 
+## ----------------------------
+##  Chi.squared   df   p.value 
+## ------------- ---- ---------
+##   175.6697     1       0    
+## ----------------------------
+## 
+## ----------------------------------
+##  Odds Ratio   Lo - 95%   Hi - 95% 
+## ------------ ---------- ----------
+##     0.51        0.46       0.57   
+## ----------------------------------
+## 
+## --------------------------------
+##  Risk Ratio   Lo - 0%   Hi - 0% 
+## ------------ --------- ---------
+##     0.92       0.92      0.92   
+## --------------------------------
+\end{verbatim}
+
+Breslow-Day Test to compare the progression for both pandemics.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{teste_breslowday}\NormalTok{(dados_covid,dados_h1n1,}\StringTok{"progression"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 comp     stat      p_valor
+## X-squared h1n1-covid 13.09378 0.0002962787
+\end{verbatim}
+
+\end{document}

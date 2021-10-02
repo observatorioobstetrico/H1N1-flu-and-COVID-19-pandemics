@@ -1,0 +1,1100 @@
+---
+title: "Pregnancy during respiratory pandemics: a comparison between 2009/10 H1N1 flu and 2020/21 COVID-19 pandemics in Brazil "
+author: 'Codes and outputs'
+date: "10/01/2021"
+output:   
+  pdf_document:
+    keep_tex: yes
+  word_document: default
+  html_document:
+    df_print: paged
+    self_contained: no
+latex_engine: xelatex
+---
+
+# Description
+
+This file presents the documentation of the analysis for the article "Pregnancy during respiratory pandemics: a comparison between 2009/10 H1N1 flu and 2020/21 COVID-19 pandemics in Brazil".
+
+# R packages used, functions
+
+The data are analyzed using the free-software R (https://www.R-project.org) in version 4.0.3. Next, we present and load the libraries used in the data analysis process.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r pacotes,echo=TRUE,message=FALSE,warning =FALSE,error=FALSE,results='hide'}
+loadlibrary <- function(x) {
+  if (!require(x, character.only = TRUE)) {
+    install.packages(x, dependencies = T)
+    if (!require(x, character.only = TRUE))
+      stop("Package not found")
+  }
+}
+
+packages <-
+  c(
+    "dplyr",
+    "lubridate",
+    "readr",
+    "ggplot2",
+    "kableExtra",
+    "tables",
+    "questionr",
+    "car",
+    "data.table",
+    "magrittr",
+    "tidyverse",
+    "readxl",
+    "summarytools",
+    "zoo",
+    "grid",
+    "gridExtra",
+    "cowplot",
+    "modelsummary",
+    "effectsize",
+    "rcompanion",
+    "DescTools"
+  )
+lapply(packages, loadlibrary)
+```
+
+One can see below the functions that will be used in the data analysis.
+```{r,echo=TRUE, eval=TRUE, message=FALSE,warning =FALSE,error=FALSE,results='hide'}
+#functions for summary measures
+MEAN <- function(x) mean(x, na.rm = TRUE)
+MEDIAN <- function(x) median(x, na.rm = TRUE)
+SDev <- function(x) sd(x, na.rm = TRUE)
+MIN <- function(x) base::min(x, na.rm = TRUE)
+MAX <- function(x) base::max(x, na.rm = TRUE)
+q25 <- function(x) stats::quantile(x, p=0.25, na.rm=TRUE)
+q75 <- function(x) stats::quantile(x, p=0.75, na.rm=TRUE)
+IQR <- function(x) round(q75(x)-q25(x), 2)
+n <- function(x)  sum(!is.na(x))
+```
+
+Function for Breslow-Day Test:
+```{r,echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+teste_breslowday <- function(dados_covid, dados_h1n1, var) {
+  tab <- array(0, dim = c(2,2,2))
+  tab[,,1] <- table(dados_h1n1$pregnant_YN, dados_h1n1[[var]])
+  tab[,,2] <- table(dados_covid$pregnant_YN, dados_covid[[var]])
+  a <- BreslowDayTest(tab, correct = TRUE)
+  out <- data.frame(comp = c("h1n1-covid"),
+    stat = c(a$statistic),
+    p_valor = c(a$p.value)
+    )
+  return(out)
+ }
+```
+
+This research studies some demographic, clinical and mortality variables of H1N1 and COVID-19 pandemics aiming to compare pregnant and non-pregnant childbearing age women.
+
+The Influenza Epidemiological Surveillance Information System, SIVEP-Gripe (Sistema de Informação de Vigilância Epidemiológica da Gripe), is a nationwide surveillance database used to monitor severe acute respiratory infections in Brazil.
+ <!-- Notification is mandatory for Influenza Syndrome (characterized by at least two of the following signs and symptoms: fever, even if referred, chills, sore throat, headache, cough, runny nose, olfactory or taste disorders) and who has dyspnea/respiratory discomfort or persistent pressure in the chest or O2 saturation less than 95% in room air or bluish color of the lips or face. Asymptomatic individuals with laboratory confirmation by molecular biology or immunological examination for COVID-19 infection are also reported.For notifications in Sivep-Gripe, hospitalized cases in both public and private hospitals and all deaths due to severe acute respiratory infections regardless of hospitalization must be considered. -->
+
+The analyzed data set includes all female patients from SIVEP-Gripe at childbearing age (10 to 49 years) with H1N1 and COVID-19 disease diagnosis, confirmed, respectively, by positive RT-PCR H1N1 and positive RT-PCR SARS-CoV-2 from the first 13 months of each pandemic, this is, from May 2009 to April 2010 for H1N1 and from March 2020 to February 2021 for COVID-19. The data sets can be obtained at https://drive.google.com/drive/folders/1qzXgHNjqNUdZ3SnnKRxpv6tQkZeRcpDv?usp=sharing. The data are loaded next.
+
+# Selection of COVID-19 cases
+
+The datasets from 2020 and 2021 are loaded and combined below:
+
+```{r,echo=FALSE, eval = TRUE, message=FALSE,warning =FALSE,error=FALSE,results='hide'}
+memory.limit(999999)
+```
+
+```{r,echo=TRUE,message=FALSE,warning =FALSE,error=FALSE,results='hide'}
+######### loading the databases ###########
+#2021
+dados_2021 <- read_delim(
+  "INFLUD21-17-05-2021.csv",
+  ";",
+  escape_double = FALSE,
+  locale = locale(encoding = "ISO-8859-2"),
+  trim_ws = TRUE
+)
+
+#2020
+dados_2020 <- read_delim(
+  "INFLUD-17-05-2021.csv",
+  ";",
+  escape_double = FALSE,
+  locale = locale(encoding = "ISO-8859-2"),
+  trim_ws = TRUE
+)
+
+sem <- 19 #last epidemiological week considered of 2021
+
+
+#### Concatenate 2020 and 2021 data ##############
+dados1 <- rbind(dados_2020, dados_2021)
+
+# Year and month of the case
+dados1 <-  dados1 %>%
+  dplyr::mutate(
+    dt_sint = as.Date(DT_SIN_PRI, format = "%d/%m/%Y"), #date of first symptoms
+    ano = lubridate::year(dt_sint), #year of the case
+    mes = lubridate::month(dt_sint) #month of the case
+  )
+```
+ 
+There are currently `r dim(dados1)[1]` observations in the database.
+ 
+ 
+## Filtering and data treatment 
+
+The first filtering consists of selecting the symptom epidemiological weeks of the analysis in 2020 and 2021.
+
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#selection of the 2020 and 2021 epidemiological weeks - from March 2020 to February 2021. 
+dados2 <- dados1 %>% 
+  filter((ano==2020 & SEM_PRI >=8) | ano ==2021)
+
+dados2 <- dados2 %>% 
+  mutate(ano = ifelse(ano ==2021 & SEM_PRI ==53, 2020, ano)) %>%   filter(ano==2020 | (ano ==2021 & SEM_PRI <= sem))
+
+dados3 <- filter(dados2, 
+                 (mes >=3 & ano == 2020) | (mes <=3 & ano == 2021))
+```
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados3, ctable(SEM_PRI, ano))
+```
+
+There are `r dim(dados3)[1]` observations in the database.
+
+The next selection of females cases:
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#filtering F
+dados4 <- filter(dados3, CS_SEXO == "F")
+```
+
+There are `r dim(dados4)[1]` observations in the database.
+
+The next step is to filter only women between 10 and 49 years old:
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#filtering age
+dados5 <- filter(dados4, NU_IDADE_N > 9 & NU_IDADE_N < 50)
+```
+
+There are `r dim(dados5)[1]` observations in the database.
+
+
+The next selection is the COVID-19 cases indicated by the `CLASSI_FIN` variable.
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados5, freq(CLASSI_FIN))
+
+dados6 <- dados5 %>% 
+  filter(CLASSI_FIN == 5)
+```
+
+There are `r dim(dados6)[1]` observations in the database.
+
+Now let's create the variable if `CLASSI_FIN==5` by PCR or another type of diagnosis.
+
+This variable is `pcr_test`, with the categories: `pcr_sars2` if PCR_SARS2 == 1. 
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#create pcr_test variable by pcr variables
+dados6 <- dados6 %>%
+  mutate(pcr_test = case_when(PCR_SARS2 == 1 ~ "pcr_sars2",
+                              TRUE ~ "não"
+                              )
+         )
+```
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados6, freq(pcr_test))
+```
+
+Now we will filter the cases with 'pcr_test== pcr_sars2' which are the cases where they can be COVID-19 only by PCR:
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados7 <- dados6 %>% 
+  filter(pcr_test == "pcr_sars2")
+```
+
+There are `r dim(dados7)[1]` observations in the database.
+
+
+Now let's select only pregnant or non-pregnant people:
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados7, freq(CS_GESTANT))
+
+dados7 <- dados7 %>%
+  mutate(
+    classi_gesta = case_when(
+      CS_GESTANT == 1  ~ "1tri", #first trimester of pregnancy
+      CS_GESTANT == 2  ~ "2tri", #second trimester of pregnancy
+      CS_GESTANT == 3  ~ "3tri", #third trimester of pregnancy
+      CS_GESTANT == 4  ~ "IG_ig", #ignored gestational age of pregnancy
+      CS_GESTANT == 5  ~ "não", #not pregnancy
+      TRUE ~ NA_character_
+    )
+  )
+
+#filtering only pregnant or non-pregnant
+dados8 <- dados7 %>% 
+  filter(!is.na(classi_gesta))
+
+
+#creating the variable pregnant yes or  no (gestante_SN)
+dados8 <- dados8 %>%
+  mutate(gestante_SN = ifelse(CS_GESTANT == 5, "não", "sim")) #não for no and sim for yes
+
+freq(dados8$gestante_SN)
+```
+
+There is `r dim(dados8)[1]` observations in the database.
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_covid <-  dados8
+```
+
+# Selection of H1N1 cases
+
+The datasets from 2009 and 2010 are loaded and combined below:
+
+```{r,echo=TRUE,message=FALSE,warning =FALSE,error=FALSE,results='hide'}
+######### loading the databases ###########
+#2009 e 2010
+dados2009 <- read_delim(
+  "influd09_limpo-final.csv",
+  ";",
+  escape_double = FALSE,
+  locale = locale(encoding = "ISO-8859-2"),
+  trim_ws = TRUE
+)
+
+dados2010 <- read_delim(
+  "influd10_limpo-final.csv",
+  ";",
+  escape_double = FALSE,
+  locale = locale(encoding = "ISO-8859-2"),
+  trim_ws = TRUE
+)
+
+dados_2009 <- dados2009 %>% 
+  rename(SRAGFINAL = SRAG2009FINAL)
+
+dados_2010 <- dados2010 %>% 
+  rename(SRAGFINAL = SRAG2010FINAL)
+
+dados <- full_join(dados_2009, dados_2010)
+
+#Create case year variable
+dados <-  dados %>%
+  dplyr::mutate(
+    dt_sint = as.Date(DT_SIN_PRI, format = "%d/%m/%Y"), #date of first symptoms
+    ano = lubridate::year(dt_sint), #year of the case
+    mes = lubridate::month(dt_sint) #month of the case
+  )
+```
+ 
+There are currently `r dim(dados)[1]` observations in the database.
+ 
+ 
+## Filtering and data treatment 
+
+The first filtering consists of selecting cases from May 2009 to April 2010.
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+dados1 <- filter(dados, 
+                 (mes >=5 & ano == 2009) | (mes <=5 & ano == 2010))
+```
+
+There are `r dim(dados1)[1]` observations in the database.
+
+The next selection of females:
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#filtering F
+dados2 <- filter(dados1, CS_SEXO == "F")
+```
+
+There are `r dim(dados2)[1]` observations in the database.
+
+The next step is to filter only women between 10 and 49 years old.
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE,}
+#Filtering by age range of interest
+dados3 <- dados2 %>% 
+  filter(NU_IDADE_N > 4009 & NU_IDADE_N < 4050)
+```
+
+There are `r dim(dados3)[1]` observations in the database.
+
+Now let's select only pregnant or non-pregnant people.
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados3, freq(CS_GESTANT))
+
+dados3 <- dados3 %>%
+  mutate(
+    classi_gesta = case_when(
+      CS_GESTANT == 1  ~ "1tri", #first trimester of pregnancy
+      CS_GESTANT == 2  ~ "2tri", #second trimester of pregnancy
+      CS_GESTANT == 3  ~ "3tri", #third trimester of pregnancy
+      CS_GESTANT == 4  ~ "IG_ig", #ignored gestational age of pregnancy
+      CS_GESTANT == 5  ~ "não", #not pregnancy
+      TRUE ~ NA_character_
+    )
+  )
+
+#filtering only pregnant or non-pregnant
+dados4 <- dados3 %>% 
+  filter(!is.na(classi_gesta))
+
+
+#creating the variable pregnant yes or  no (gestante_SN)
+dados4 <- dados4 %>%
+  mutate(gestante_SN = ifelse(CS_GESTANT == 5, "não", "sim")) #"não" means 'no' and "sim" means 'yes'
+```
+
+There are `r dim(dados4)[1]` observations in the database.
+
+The next selection is the covid cases indicated by the `CLASSI_FIN` variable.
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados4, freq(CLASSI_FIN))
+
+dados5 <- dados4 %>% 
+  filter(CLASSI_FIN == 1)
+```
+
+There are `r dim(dados5)[1]` observations in the database.
+
+Now let's create the variable if `CLASSI_FIN==1` by PCR or another type of diagnosis.
+
+This variable is `pcr_test`, with the categories: `pcr_pos` if PCR positive.
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#create pcr_test variable by pcr variables
+dados5 <- dados5 %>%
+  mutate(pcr_test =  case_when(PCR_RES == 1 & #pcr positive
+PCR_ETIOL== 1 ~ "pcr_pos",
+TRUE ~ "não"))
+
+```
+
+Now we will filter the cases with pcr_test == "pcr_pos" that they are the cases where COVID-19 only by PCR:
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados6 <- dados5 %>% 
+  filter(pcr_test == "pcr_pos")
+```
+
+There are `r dim(dados6)[1]` observations in the database.
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_h1n1 <-  dados6
+```
+
+
+# Analysis
+
+Creating a variable to identify pregnant and non-pregnant women:
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_h1n1 <-  dados_h1n1 %>%
+  mutate(pregnant_YN = ifelse(gestante_SN == "não", "no", "yes"))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_covid <-  dados_covid %>%
+  mutate(pregnant_YN = ifelse(gestante_SN == "não", "no", "yes"))
+```
+
+## Epidemiologic characteristics 
+
+## Age
+
+### H1N1
+
+```{r}
+dados_h1n1 <- dados_h1n1 %>%
+  mutate(age = NU_IDADE_N - round(NU_IDADE_N, -2))
+```
+
+Descritiva : 
+```{r}
+datasummary((pregnant_YN) ~ age*(n+MEAN+SD+MEDIAN+MIN+MAX+q25+q75+IQR),
+            data = dados_h1n1, output = 'markdown')
+```
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#t test to compare ages of pregnant and non-pregnant women
+t.test(age ~ pregnant_YN, data = dados_h1n1)
+```
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#Cohen's effect size
+c_h1n1 <- cohens_d(age ~ as.factor(pregnant_YN), data=dados_h1n1)
+c_h1n1
+interpret_d(c_h1n1$Cohens_d,rules="cohen1988")
+```
+
+### COVID-19
+
+```{r}
+dados_covid$age <- dados_covid$NU_IDADE_N
+datasummary((pregnant_YN) ~ age*(n+MEAN+SD+MEDIAN+MIN+MAX+q25+q75+IQR),
+            data = dados_covid, output = 'markdown')
+```
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#t test to compare ages of pregnant and non-pregnant women
+t.test(age ~ pregnant_YN, data = dados_covid)
+```
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#Cohen's effect size
+c_covid <- cohens_d(age ~ as.factor(pregnant_YN), data=dados_covid)
+c_covid
+interpret_d(c_covid$Cohens_d,rules="cohen1988")
+```
+
+## Age Group
+
+### H1N1
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#Creating a variable to classify the age groups
+dados_h1n1 <-  dados_h1n1 %>%
+  mutate(
+    age_group = case_when(
+      NU_IDADE_N <= 4019 ~ "<20",
+      NU_IDADE_N >= 4020
+      & NU_IDADE_N <= 4034 ~ "20-34",
+      NU_IDADE_N > 4034 ~ ">=35",
+      TRUE ~ NA_character_
+    )
+  )
+dados_h1n1$age_group <-
+  factor(dados_h1n1$age_group, levels = c("<20", "20-34", ">=35"))
+```
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_h1n1, ctable(age_group, pregnant_YN, prop = "c", useNA = "no", chisq = TRUE))
+```
+
+
+### COVID-19
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#Creating a variable to classify the age groups
+dados_covid <-  dados_covid %>%
+  mutate(
+    age_group = case_when(
+      NU_IDADE_N <= 19 ~ "<20",
+      NU_IDADE_N >= 20
+      & NU_IDADE_N <= 34 ~ "20-34",
+      NU_IDADE_N > 34 ~ ">=35",
+      TRUE ~ NA_character_
+    )
+  )
+dados_covid$age_group <-
+  factor(dados_covid$age_group, levels = c("<20", "20-34", ">=35"))
+```
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_covid, ctable(age_group, pregnant_YN, prop = "c", useNA = "no", chisq = TRUE))
+```
+
+## Ethnicity
+
+## H1N1
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+#Creating a variable to classify the ethnicity classes
+dados_h1n1 <-  dados_h1n1 %>%
+  mutate(ethnicity = case_when(CS_RACA == 1 ~ "White",
+                             CS_RACA == 2 ~ "Black",
+                             CS_RACA == 3 ~ "Yellow",
+                             CS_RACA == 4 ~ "Brown",
+                             CS_RACA == 5 ~ "Indigenous",
+                               TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+questionr::freq(
+  dados_h1n1$ethnicity,
+  cum = FALSE,
+  total = TRUE,
+  na.last = FALSE,
+  valid = FALSE
+) %>%
+  kable(caption = "Frequency table for Ethnicity - H1N1 data", digits = 2) 
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error= FALSE}
+with(dados_h1n1, ctable(ethnicity, pregnant_YN, prop="c",useNA = "no",chisq = FALSE))
+```
+
+The Exact's Fisher Test is applied considering that some frequencies are too small (less than 5).
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+fisher.test(dados_h1n1$ethnicity, dados_h1n1$pregnant_YN,simulate.p.value = TRUE)
+```
+
+### COVID-19
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+#Creating a variable to classify the ethnicity classes
+dados_covid <-  dados_covid %>%
+  mutate(ethnicity = case_when(CS_RACA == 1 ~ "White",
+                             CS_RACA == 2 ~ "Black",
+                             CS_RACA == 3 ~ "Yellow",
+                             CS_RACA == 4 ~ "Brown",
+                             CS_RACA == 5 ~ "Indigenous",
+                               TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+questionr::freq(
+  dados_covid$ethnicity,
+  cum = FALSE,
+  total = TRUE,
+  na.last = FALSE,
+  valid = FALSE
+) %>%
+  kable(caption = "Frequency table for Ethnicity - COVID-19 data", digits = 2) 
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_covid, ctable(ethnicity, pregnant_YN, prop="c",useNA = "no",chisq = TRUE))
+```
+
+## Displacement
+Displacement: change city to access health care.
+
+### COVID-19
+
+```{r}
+#Creating a variable to identify the need to move to another city other than where they live
+dados_covid <- dados_covid %>% 
+  mutate(displacement = case_when((CO_MUN_RES == CO_MU_INTE) & 
+                                  !is.na(CO_MU_INTE) & !is.na(CO_MUN_RES) ~ "no",
+                                (CO_MUN_RES != CO_MU_INTE) & !is.na(CO_MU_INTE) & 
+                                  !is.na(CO_MUN_RES) ~ "yes",
+                                TRUE ~ NA_character_
+                                )
+  )
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_covid, ctable(pregnant_YN, displacement, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Map to visualize the displacement rate by state:
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+d1 <- dados_covid
+estado <- sort(unique(d1$SG_UF_NOT))
+valor <- data.table(prop.table(table(d1$SG_UF_NOT,d1$displacement),1))
+valor <- valor[valor$V2=="yes",]
+dt1_estadual <- data.frame("uf"=valor$V1,"T1"=valor$N*100)
+dt <- rbind(c("AC",12), c("AL",27), c("AP",16), c("AM",13), c("BA",29), 
+              c("CE",23), c("DF",53), c("ES",32), c("GO",52), c("MA",21), 
+              c("MT",51), c("MS",50), c("MG",31), c("PA",15), c("PB",25), 
+              c("PR",41), c("PE",26), c("PI",22), c("RN",24), c("RS",43), 
+              c("RJ",33), c("RO",11), c("RR",14), c("SC",42), c("SP",35), 
+              c("SE",28), c("TO",17)) %>% data.table %>% `colnames<-`(c("uf","id"))
+mapaUF <- readRDS("mapaUF.Rds")
+dt1 <- full_join(dt, dt1_estadual, by = "uf")
+ggplot(dt1) + geom_map(map = mapaUF, color = 'gray30', aes_string(map_id = "id", fill = "T1")) + geom_path(data = mapaUF, color = 'gray30', size = .1, aes(x = long, y = lat, group = group)) + theme_void() + coord_equal() + labs(fill = "Displacement rate [%]",title="COVID-19 notifications") + scale_fill_gradient2(breaks=c(0,25,50,75),limits=c(0,75), low = "blue", mid = "white",high = "purple") 
+```
+
+### H1N1
+
+```{r}
+#Creating a variable to identify the need to move to another city other than where they live
+dados_h1n1 <- dados_h1n1 %>% 
+  mutate(displacement = case_when((ID_MN_RESI  == CO_MU_INTE) & 
+                                  !is.na(CO_MU_INTE) & !is.na(ID_MN_RESI) ~ "no",
+                                (ID_MN_RESI != CO_MU_INTE) & !is.na(CO_MU_INTE) & 
+                                  !is.na(ID_MN_RESI) ~ "yes",
+                                TRUE ~ NA_character_
+                                )
+  )
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, displacement, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Map to visualize the displacement rate by state:
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+#H1N1
+d1 <- dados_h1n1
+valor <- data.table(prop.table(table(d1$SG_UF_NOT,d1$displacement),1))
+valor <- valor[valor$V2=="yes",]
+dt1_estadual <- data.frame("id"=valor$V1,"T1"=valor$N*100)
+dt <- rbind(c("AC",12), c("AL",27), c("AP",16), c("AM",13), c("BA",29), 
+              c("CE",23), c("DF",53), c("ES",32), c("GO",52), c("MA",21), 
+              c("MT",51), c("MS",50), c("MG",31), c("PA",15), c("PB",25), 
+              c("PR",41), c("PE",26), c("PI",22), c("RN",24), c("RS",43), 
+              c("RJ",33), c("RO",11), c("RR",14), c("SC",42), c("SP",35), 
+              c("SE",28), c("TO",17)) %>% data.table %>% `colnames<-`(c("uf","id"))
+mapaUF <- readRDS("mapaUF.Rds")
+dt1 <- full_join(dt, dt1_estadual, by = "id")
+ggplot(dt1) + geom_map(map = mapaUF, color = 'gray30', aes_string(map_id = "id", fill = "T1")) + geom_path(data = mapaUF, color = 'gray30', size = .1, aes(x = long, y = lat, group = group)) + theme_void() + coord_equal() + labs(fill = "Displacement rate [%]",title="H1N1 Notifications") + scale_fill_gradient2(breaks=c(0,25,50,75),limits=c(0,75), low = "blue", mid = "white",high = "purple") 
+```
+
+Breslow-Day Test to compare the displacement need in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"displacement")
+```
+
+## Vaccine
+
+Now the notifications where the case is identified as flu vaccinated will be analyzed.
+
+### H1N1
+
+```{r}
+#Creating a variable to identify flu vaccinated
+dados_h1n1 <- dados_h1n1 %>% 
+  mutate(vaccine = case_when(VACINA == 1 ~ "Yes",
+                            VACINA == 2 ~ "No",
+                            TRUE ~ NA_character_)
+         )
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, vaccine, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+### COVID-19
+
+```{r}
+#Creating a variable to identify flu vaccinated
+dados_covid <- dados_covid %>% 
+  mutate(vaccine = case_when(VACINA == 1 ~ "Yes",
+                            VACINA == 2 ~ "No",
+                            TRUE ~ NA_character_)
+         )
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_covid, ctable(pregnant_YN, vaccine, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Breslow-Day Test to compare the effect of flu vaccine in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"vaccine")
+```
+
+
+# Comorbidities
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+dados_h1n1 <- dados_h1n1 %>%
+  mutate(cardiac = case_when(CARDIOPATI == 1 ~ "Yes",
+                                CARDIOPATI == 2 ~ "No",
+                                TRUE ~ NA_character_))
+
+dados_h1n1 <- dados_h1n1 %>%
+  mutate(pneumologic = case_when(PNEUMOPATI == 1 ~ "Yes",
+                                PNEUMOPATI == 2 ~ "No",
+                                TRUE ~ NA_character_))
+
+dados_h1n1 <- dados_h1n1 %>%
+  mutate(renal = case_when(RENAL == 1 ~ "Yes",
+                           RENAL == 2 ~ "No",
+                           TRUE ~ NA_character_))
+
+dados_h1n1 <- dados_h1n1 %>%
+  mutate(imuno = case_when(IMUNODEPRE == 1 ~ "Yes",
+                                IMUNODEPRE == 2 ~ "No",
+                                TRUE ~ NA_character_))
+dados_h1n1 <- dados_h1n1 %>%
+  mutate(hematologic = case_when(HEMOGLOBI == 1 ~ "Yes",
+                                HEMOGLOBI == 2 ~ "No",
+                                TRUE ~ NA_character_))
+
+dados_covid <- dados_covid %>%
+  mutate(cardiac = case_when(CARDIOPATI == 1 ~ "Yes",
+                                CARDIOPATI == 2 ~ "No",
+                                TRUE ~ NA_character_))
+
+dados_covid <- dados_covid %>%
+  mutate(pneumologic = case_when((PNEUMOPATI == 1 | ASMA == 1) ~ "Yes",
+                                (PNEUMOPATI == 2 | ASMA == 2) ~ "No",
+                                TRUE ~ NA_character_))
+
+dados_covid <- dados_covid %>%
+  mutate(renal = case_when(RENAL == 1 ~ "Yes",
+                           RENAL == 2 ~ "No",
+                           TRUE ~ NA_character_))
+
+dados_covid <- dados_covid %>%
+  mutate(imuno = case_when(IMUNODEPRE == 1 ~ "Yes",
+                                IMUNODEPRE == 2 ~ "No",
+                                TRUE ~ NA_character_))
+
+dados_covid <- dados_covid %>%
+  mutate(hematologic = case_when(HEMATOLOGI == 1 ~ "Yes",
+                                HEMATOLOGI == 2 ~ "No",
+                                TRUE ~ NA_character_))
+
+```
+
+## Cardiac disease
+
+###  H1N1:
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, cardiac, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+
+### COVID-19:
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_covid, ctable(pregnant_YN, cardiac, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+
+Breslow-Day Test to compare the effect cardiac morbidity in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"cardiac")
+```
+
+## Pneumologic
+
+###  H1N1:
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, pneumologic, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+
+###  COVID-19:
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_covid, ctable(pregnant_YN, pneumologic, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Breslow-Day Test to compare the effect of pneumologic morbidity in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"pneumologic")
+```
+
+## Renal
+
+###  H1N1:
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, renal, prop = "r", useNA = "no", chisq = FALSE, OR=TRUE))
+```
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+fisher.test(dados_h1n1$renal, dados_h1n1$pregnant_YN)
+```
+
+###  COVID-19:
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_covid, ctable(pregnant_YN, renal, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Breslow-Day Test to compare the effect of renal morbidity in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"renal")
+```
+
+## Imunossupression 
+
+###  H1N1:
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, imuno, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+###  COVID-19:
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_covid, ctable(pregnant_YN, imuno, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+
+Breslow-Day Test to compare the effect of imunosupression in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"imuno")
+```
+
+## Hematologic
+
+###  H1N1:
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, hematologic, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+###  COVID-19:
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_covid, ctable(pregnant_YN, hematologic, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Breslow-Day Test to compare the effect of hematologic issues in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"hematologic")
+```
+
+# Severity
+
+For the analysis of severity, all cases where hospitalization occurred were considered as serious cases. The cases where hospitalization was not necessary were considered as less serious cases.
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#H1N1
+dados_h1n1 <- dados_h1n1 %>%
+  mutate(severity = factor(case_when(HOSPITAL == 1 ~ "hospitalized",
+                               HOSPITAL == 2 ~ "non-hospitalized",
+                              TRUE ~ NA_character_)))
+dados_h1n1$severity <- relevel(
+  dados_h1n1$severity, 
+  ref = "non-hospitalized"
+)
+
+#COVID-19
+dados_covid <- dados_covid %>%
+  mutate(severity = factor(case_when(HOSPITAL == 1 ~ "hospitalized",
+                               HOSPITAL == 2 ~ "non-hospitalized",
+                               TRUE ~ NA_character_)))
+dados_covid$severity <- relevel(
+  dados_covid$severity, 
+  ref = "non-hospitalized"
+)
+```
+
+### H1N1
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, severity, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+### COVID-19
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+with(dados_covid, ctable(pregnant_YN, severity, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Breslow-Day Test to compare the severity of both pandemics.
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"severity")
+```
+
+In sequence, we analyze only hospitalized cases:
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#H1N1
+dados_h1n1 <- dados_h1n1 %>%
+  filter(severity == "hospitalized")
+
+#COVID-19
+dados_covid <- dados_covid %>% 
+  filter(severity == "hospitalized")
+
+```
+
+# Symptoms
+
+## Fever
+
+### H1N1
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_h1n1 <-  dados_h1n1 %>%
+  mutate(fever = case_when(FEBRE == 1 ~ "yes",
+                              FEBRE == 2 ~ "no",
+                              TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, fever, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+### COVID-19
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_covid <-  dados_covid %>%
+  mutate(fever = case_when(FEBRE == 1 ~ "yes",
+                              FEBRE == 2 ~ "no",
+                              TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_covid, ctable(pregnant_YN, fever, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Breslow-Day Test to compare the effect of fever in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"fever")
+```
+
+## Cough
+
+### H1N1
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_h1n1 <-  dados_h1n1 %>%
+  mutate(cough = case_when(TOSSE == 1 ~ "yes",
+                              TOSSE == 2 ~ "no",
+                              TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, cough, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+### COVID-19
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_covid <-  dados_covid %>%
+  mutate(cough = case_when(TOSSE == 1 ~ "yes",
+                              TOSSE == 2 ~ "no",
+                              TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_covid, ctable(pregnant_YN, cough, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Breslow-Day Test to compare the effect of cough in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"cough")
+```
+
+## Dyspnea 
+
+### H1N1
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_h1n1 <-  dados_h1n1 %>%
+  mutate(dyspnea = case_when(DISPNEIA == 1 ~ "yes",
+                              DISPNEIA == 2 ~ "no",
+                              TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, dyspnea, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+### COVID-19
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_covid <-  dados_covid %>%
+  mutate(dyspnea = case_when(DISPNEIA == 1 ~ "yes",
+                              DISPNEIA == 2 ~ "no",
+                              TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_covid, ctable(pregnant_YN, dyspnea, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Breslow-Day Test to compare the effect of dyspnea in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"dyspnea")
+```
+
+## Sore throat
+
+### H1N1
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_h1n1 <-  dados_h1n1 %>%
+  mutate(sore_throat = case_when(GARGANTA == 1 ~ "yes",
+                              GARGANTA  == 2 ~ "no",
+                              TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, sore_throat, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+### COVID-19
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_covid <-  dados_covid %>%
+  mutate(sore_throat = case_when(GARGANTA == 1 ~ "yes",
+                              GARGANTA  == 2 ~ "no",
+                              TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_covid, ctable(pregnant_YN, sore_throat, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Breslow-Day Test to compare the effect of sore throat in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"sore_throat")
+```
+
+## Diarrhea
+
+### H1N1
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_h1n1 <-  dados_h1n1 %>%
+  mutate(diarrhea = case_when(DIARREIA == 1 ~ "yes",
+                              DIARREIA == 2 ~ "no",
+                              TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_h1n1, ctable(pregnant_YN, diarrhea, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+### COVID-19
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+dados_covid <-  dados_covid %>%
+  mutate(diarrhea = case_when(DIARREIA == 1 ~ "yes",
+                              DIARREIA == 2 ~ "no",
+                              TRUE ~ NA_character_))
+```
+
+```{r, echo=TRUE,message=FALSE,warning =FALSE,error=FALSE}
+with(dados_covid, ctable(pregnant_YN, diarrhea, prop = "r", useNA = "no", chisq = TRUE, OR=TRUE))
+```
+
+Breslow-Day Test to compare the effect of diarrhea in both pandemics
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"diarrhea")
+```
+
+# Outcome
+
+```{r, echo=TRUE, eval= TRUE, message=FALSE, warning =FALSE, error=FALSE}
+#H1N1
+dados_h1n1 <- dados_h1n1 %>%
+  mutate(progression = case_when(EVOLUCAO == 1 ~ "cure",
+                              EVOLUCAO == 2 ~ "death",
+                              EVOLUCAO == 3 ~ "death",
+                              EVOLUCAO == 4 ~ "death",
+                              TRUE ~ NA_character_))
+#COVID-19
+dados_covid <- dados_covid %>%
+  mutate(progression = case_when(EVOLUCAO == 1 ~ "cure",
+                              EVOLUCAO == 2 ~ "death",
+                              EVOLUCAO == 3 ~ "death",
+                              TRUE ~ NA_character_))
+
+```
+
+### H1N1
+
+```{r}
+with(dados_h1n1, ctable(pregnant_YN, progression, prop="r", OR=TRUE, useNA = "no", chisq = TRUE))
+```
+
+### COVID-19
+
+```{r}
+with(dados_covid, ctable(pregnant_YN, progression, prop="r", OR=TRUE, useNA = "no", chisq = TRUE))
+```
+
+Breslow-Day Test to compare the progression for both pandemics.
+```{r, echo=TRUE,message=FALSE, warning=FALSE,error=FALSE}
+teste_breslowday(dados_covid,dados_h1n1,"progression")
+```
+
